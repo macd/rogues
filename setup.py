@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name             = 'rogues',
-      version          = '0.2.0',
+      version          = '9.9.9',
       test_suite       = 'nose.collector',
       packages         = find_packages(),
       install_requires = ['numpy', 'scipy', 'matplotlib'],
