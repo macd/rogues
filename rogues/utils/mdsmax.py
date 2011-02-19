@@ -89,7 +89,7 @@ def mdsmax(fun, x, stopit = None, savit = None, varargin = []):
     print_status('f(x0) = %9.4e\n' %  f[0])
 
     # Set up initial simplex.
-    scale = np.max(nl.norm(x0, np.inf), 1)
+    scale = max(nl.norm(x0, np.inf), 1)
     if stopit[3] == 0:
         # Regular simplex - all edges have same length.
         # Generated from construction given in reference [18, pp. 80-81] of [1].
@@ -157,7 +157,7 @@ def mdsmax(fun, x, stopit = None, savit = None, varargin = []):
             vt = np.outer(v0, np.ones(n))
             #size_simplex = nl.norm(v[:,1:n+1] - v0[:,np.ones(n)], 1) /  \
             size_simplex = nl.norm(v[:,1:n+1] - vt, 1) /  \
-                           np.max(1, nl.norm(v0,1))
+                           max(1, nl.norm(v0,1))
             if size_simplex <= tol:
                 msg = 'Simplex size %9.4e <= %9.4e...quitting\n' % \
                                (size_simplex, tol)
