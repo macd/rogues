@@ -1,5 +1,6 @@
 import scipy as sp
 import scipy.linalg as sl
+from scipy.sparse.linalg.isolve import bicg
 import scipy.sparse as sparse
 import numpy as np
 import numpy.linalg as nl
@@ -555,7 +556,7 @@ def test_wathen():
     a = rogues.wathen(5,5)
     n = a.shape[0]
     b = np.ones(n)
-    x,info = sparse.linalg.isolve.bicg(a,b)
+    x,info = bicg(a,b)
     npt.assert_equal(info, 0)
     # since wathen is symmetric, positive definite, it had better have all real eigs
     npt.assert_almost_equal( (x.imag).sum(), 0.0)
