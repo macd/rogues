@@ -1,4 +1,5 @@
 import numpy as np
+import numpy.linalg as nl
 from rogues.matrices import qmult
 from rogues.utils import bandred
 

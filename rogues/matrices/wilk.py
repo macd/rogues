@@ -41,7 +41,7 @@ def wilk(n):
         # Wilkinson (1965), p.234.
         a = hilb(6,6)
         # drop off the last row and the first column
-        a = a[0:5, 1:6]*1.8144
+        a = a[0:5, 1:6] * 1.8144    #pychok doesn't like this for some reason
         # return zero array for b
         b = np.zeros(5)
         

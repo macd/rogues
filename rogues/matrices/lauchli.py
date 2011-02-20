@@ -13,7 +13,7 @@ def lauchli(n, mu = None):
           kleinsten Quadraten, Numer. Math, 3 (1961), pp. 226-240.
     """
     if mu == None:
-        mu = np.sqrt(finfo(float).eps)
+        mu = np.sqrt(np.finfo(float).eps)
         
     a = np.vstack((np.ones(n), mu*np.eye(n)))
 

@@ -1,4 +1,6 @@
 import numpy as np
+import rogues
+import scipy.linalg as sl
 
 def condex(n, k = 4, theta = 100):
     """

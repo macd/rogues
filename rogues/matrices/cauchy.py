@@ -3,7 +3,7 @@ import numpy as np
 class Higham(Exception):
     pass
 
-def cauchy(x, y = None, overwrite_a = False):
+def cauchy(x, y = None):
     """
     cauchy  cauchy matrix.
         c = cauchy(x, y), where x, y are n-vectors, is the n-by-n matrix
@@ -31,7 +31,6 @@ def cauchy(x, y = None, overwrite_a = False):
         n, = x.shape
     except AttributeError:
         n = x
-        a = np.arange(1, n + 1)
         
     if y == None:
         y = x

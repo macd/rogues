@@ -1,6 +1,9 @@
 import numpy as np
 import scipy.sparse as sparse
 
+class Higham(Exception):
+    pass
+
 def wathen(nx, ny, k = 0):
     """
     WATHEN  Wathen matrix - a finite element matrix (sparse, random entries).
@@ -57,8 +60,6 @@ def wathen(nx, ny, k = 0):
                     a[nn[krow], nn[kcol]] = a[nn[krow], nn[kcol]] + em[krow,kcol]
 
     if k == 1:
-        if warning:
-            print "k = 1 option not supported... ignoring"
-            #a = diag(diag(a)) \ a
+        raise Higham("k = 1 option not supported... ignoring")
 
     return a

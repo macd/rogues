@@ -1,4 +1,5 @@
 import numpy as np
+import rogues
 
 def dorr(n, theta = 0.01, r_matrix = False, set_sparse = False):
     """
@@ -45,9 +46,9 @@ def dorr(n, theta = 0.01, r_matrix = False, set_sparse = False):
     c = c[1:n]
     e = e[0:n-1]
 
-    if r_matrix == True:
+    if r_matrix:
         if set_sparse:
-            c = tridiag(c, d, e)
+            c = rogues.tridiag(c, d, e)
         else:
             c = np.diag(c, -1) + np.diag(d) + np.diag(e, 1)
         # if we are to return the matrix, return _only_ the matrix

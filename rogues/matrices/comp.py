@@ -20,8 +20,9 @@ def comp(a, k = 0):
 
     if k == 0:
 
-        # This code uses less temporary storage than the `high level' definition above.
-        # (well, maybe... not clear that this is so in numpy as opposed to m*lab)
+        # This code uses less temporary storage than the `high level' 
+        # definition above. (well, maybe... not clear that this is so 
+        # in numpy as opposed to m*lab)
         c = -abs(a)
         for j in range(p):
            c[j, j] = np.abs(a[j,j])
@@ -34,15 +35,15 @@ def comp(a, k = 0):
 
         mx = np.empty(p)
         for j in range(p):
-            mx[j] = max(abs(c[i,:]))
+            mx[j] = max(abs(c[j,:]))
            
-        c = -np.outer(mx * ones(n))
+        c = -np.outer(mx * np.ones(n))
         for j in range(p):
             c[j,j] = abs(a[j,j])
 
-        if ( a == tril(a) ).all():
+        if ( a == np.tril(a) ).all():
             c = np.tril(c)
-        if ( a == triu(a) ).all():
+        if ( a == np.triu(a) ).all():
             c = np.triu(c)
 
     return c

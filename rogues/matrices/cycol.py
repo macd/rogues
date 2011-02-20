@@ -29,8 +29,8 @@ def cycol(mn, k = None):
 
     a = np.random.randn(m, k)
 
-    for i in range(1, int(np.ceil(n/k))):
-        a = np.r_['1',a, a[:,0:k]]         # this is the same as np.hstack(a,...)
+    for i in range(1, int(np.ceil(n/k))): #PYCHOK
+        a = np.r_['1',a, a[:,0:k]]        # this is the same as np.hstack(a,...)
 
     # Truncate matrix down to desired size if we concat'ed too much 
     a = a[:, 0:n]

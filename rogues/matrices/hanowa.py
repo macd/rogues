@@ -25,6 +25,7 @@ def hanowa(n, d = 1):
     dg  = np.diag(np.arange(1, m + 1))
     mdg = -1 * dg
     de  = d * np.eye(m)
-    a = np.bmat('de,  mdg; dg, de')
+    # pychok chokes here because it cannot see that we are using mdg and de
+    a = np.bmat('de,  mdg; dg, de')  #PYCHOK 
 
     return a 

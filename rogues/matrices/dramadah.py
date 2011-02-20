@@ -1,5 +1,5 @@
 import numpy as np
-from rogues.utils import toeplitz
+import rogues
 
 def dramadah(n, k = 1):
     """
@@ -39,7 +39,7 @@ def dramadah(n, k = 1):
         if n < 4:
             r = r[0:n]
             
-        a = toeplitz(c, r)
+        a = rogues.toeplitz(c, r)
 
     elif k == 2:
         # Upper triangular and Toeplitz
@@ -48,13 +48,13 @@ def dramadah(n, k = 1):
         r = np.ones(n)
         r[2::2] = 0
 
-        a = toeplitz(c, r)
+        a = rogues.toeplitz(c, r)
 
     elif k == 3:
         # Lower Hessenberg.
         c = np.ones(n)
         c[1::2] = 0
             
-        a = toeplitz(c, np.r_['1', np.array([1, 1]), np.zeros(n-2)] );
+        a = rogues.toeplitz(c, np.r_['1', np.array([1, 1]), np.zeros(n-2)] );
 
     return a

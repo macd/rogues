@@ -1,4 +1,5 @@
 import numpy as np
+import rogues
 
 class Higham(Exception):
     pass
@@ -35,7 +36,7 @@ def hadamard(n):
         h = np.array([1])
 
     elif k == 1:      # N = 12 * 2^e;
-        tp = toeplitz( np.array([-1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1]),
+        tp = rogues.toeplitz( np.array([-1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1]),
                               np.array([-1, 1, -1, 1, 1, 1, -1, -1, -1, 1, -1]) )
         h = np.vstack( (np.ones((1,12)), np.hstack( (np.ones((11,1)), tp))))
 

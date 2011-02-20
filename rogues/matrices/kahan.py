@@ -37,10 +37,10 @@ def kahan(n, theta = 1.2, pert = 25):
     s = np.sin(theta)
     c = np.cos(theta)
 
-    u = np.eye(n) - c * np.triu(np.ones((n,n)), 1)
-    U = np.diag( s**np.arange(0,n)) * u +                \
-                 pert * np.finfo(float).eps *     \
-                 np.diag( np.arange(n, 0, -1) )
+    u = np.matrix(np.eye(n) - c * np.triu(np.ones((n,n)), 1))
+    z = np.matrix(np.diag(s ** np.arange(0,n) ))
+    eps = np.finfo(float).eps
+    u = z * u + pert * eps * np.matrix(np.diag( np.arange(n, 0, -1) ))
     
     if r > n:
         # Extend to an r-by-n matrix.

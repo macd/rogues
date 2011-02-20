@@ -126,10 +126,10 @@ Some of generally useful matrix utility functions:
    More information is available on any of these functions by typing
    "help <funcname>"
    
-Don MacMillen 16 May 2009
+Don MacMillen 19 Feb 2011
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.1"
    
 from matrices import *
 from utils import *
