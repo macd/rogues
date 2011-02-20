@@ -38,9 +38,5 @@ def hilb(n, m = 0):
     elif m == 0:
         m = n
     
-    x = np.zeros((n,m))
-    for i in range(n):
-        for j in range(m):
-            x[i,j] = 1./(float(i+j)+1.)
-
-    return x
+    v = np.arange(1, n + 1) + np.arange(0, m)[:, np.newaxis]
+    return 1. / v

@@ -1,5 +1,5 @@
 """
-The "rogues" module is a reimplmentation of Nick Higham's test matrices into
+The "rogues" module is a reimplementation of Nick Higham's test matrices into
 Python, Numpy, and Scipy.  They were generally ported by using the
 iPython shell.  They were developed from Version 3 (1995) of the test
 matrix package from code downloaded from Higham's web site.  Also,

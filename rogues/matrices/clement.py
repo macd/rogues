@@ -1,7 +1,7 @@
 import numpy as np
 
 def clement(n, k = 0):
-    """"
+    """
     CLEMENT   Clement matrix - tridiagonal with zero diagonal entries.
           CLEMENT(N, K) is a tridiagonal matrix with zero diagonal entries
           and known eigenvalues.  It is singular if N is odd.  About 64
