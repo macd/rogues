@@ -31,7 +31,7 @@ def chebspec(n, k = 0):
     c = np.zeros((n+1, n+1))
 
     one = np.ones(n+1)
-    x = np.cos( np.arange(0, n + 1) * (np.pi/n) )
+    x = np.cos( np.arange(0, n + 1) * (np.pi/float(n)) )
     d = np.ones(n+1)
     d[0] = 2
     d[n] = 2
@@ -40,7 +40,7 @@ def chebspec(n, k = 0):
     c = np.outer(d, (one / d)) / (np.outer(x,one) - np.outer(one, x) + np.eye(n + 1))
 
     #  Now fix diagonal and signs.
-    c[0,0] = (2 * n**2 + 1)/6
+    c[0,0] = (2 * n**2 + 1) / 6.0
     for i in range(1, n + 1):
         if ((i+1) % 2) == 0:
            c[:,i] = -c[:, i]

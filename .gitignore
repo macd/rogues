@@ -1,4 +1,6 @@
 *.pyc
 *~
+setup.cfg
+*egg*
 build/*
 dist/*
