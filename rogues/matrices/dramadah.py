@@ -1,7 +1,8 @@
 import numpy as np
 import rogues
 
-def dramadah(n, k = 1):
+
+def dramadah(n, k=1):
     """
     dramadah  a (0,1) matrix whose inverse has large integer entries.
           An anti-hadamard matrix a is a matrix with elements 0 or 1 for
@@ -30,15 +31,15 @@ def dramadah(n, k = 1):
     if k == 1:
         # Toeplitz
         c = np.ones(n)
-        for i in range(1,n,4):
+        for i in range(1, n, 4):
             m = min(1, n - i)
-            c[i:i+m+1] = 0
+            c[i:i + m + 1] = 0
 
         r = np.zeros(n)
         r[0:4] = np.array([1, 1, 0, 1])
         if n < 4:
             r = r[0:n]
-            
+
         a = rogues.toeplitz(c, r)
 
     elif k == 2:
@@ -54,7 +55,7 @@ def dramadah(n, k = 1):
         # Lower Hessenberg.
         c = np.ones(n)
         c[1::2] = 0
-            
-        a = rogues.toeplitz(c, np.r_['1', np.array([1, 1]), np.zeros(n-2)] );
+
+        a = rogues.toeplitz(c, np.r_['1', np.array([1, 1]), np.zeros(n - 2)])
 
     return a

@@ -1,6 +1,6 @@
-import numpy as np
 import scipy.sparse as sparse
 from rogues.utils import tridiag
+
 
 def poisson(n):
     """
@@ -14,8 +14,8 @@ def poisson(n):
           Johns Hopkins University Press, Baltimore, Maryland, 1989
           (Section 4.5.4).
     """
-    s = tridiag(n,-1,2,-1)
-    i = sparse.eye(n,n)
-    a = sparse.kron(i,s) + sparse.kron(s,i)
+    s = tridiag(n, -1, 2, -1)
+    i = sparse.eye(n, n)
+    a = sparse.kron(i, s) + sparse.kron(s, i)
 
     return a

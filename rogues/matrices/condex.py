@@ -2,7 +2,8 @@ import numpy as np
 import rogues
 import scipy.linalg as sl
 
-def condex(n, k = 4, theta = 100):
+
+def condex(n, k=4, theta=100):
     """
     CONDEX   `Counterexamples' to matrix condition number estimators.
          CONDEX(N, K, THETA) is a `counterexample' matrix to a condition
@@ -29,16 +30,16 @@ def condex(n, k = 4, theta = 100):
 
     if k == 1:    # Cline and Rew (1983), Example B.
 
-        a = np.array([[1,  -1,  -2*theta,     0],
-                      [0,   1,     theta,  -theta],
-                      [0,   1,   1+theta,  -(theta+1)],
-                      [0,   0,   0,         theta]])
+        a = np.array([[1, -1, -2 * theta, 0],
+                      [0, 1, theta, -theta],
+                      [0, 1, 1 + theta, -(theta + 1)],
+                      [0, 0, 0, theta]])
 
     elif k == 2:   # Cline and Rew (1983), Example C.
 
-        a = np.array([[1,   1-2/theta^2,  -2,],
-                      [0,   1/theta,      -1/theta],
-                      [0,   0,             1]])
+        a = np.array([[1, 1 - 2 / theta ** 2, -2],
+                      [0, 1 / theta, -1 / theta],
+                      [0, 0, 1]])
 
     elif k == 3:    # Cline and Rew (1983), Example D.
 
@@ -47,21 +48,21 @@ def condex(n, k = 4, theta = 100):
 
     elif k == 4:    # Higham (1988), p. 390.
 
-        x = np.ones((n,3))              #  First col is e
-        x[1:n, 1] = np.zeros(n - 1)     #  Second col is e(1)
+        x = np.ones((n, 3))             # First col is e
+        x[1:n, 1] = np.zeros(n - 1)     # Second col is e(1)
 
         # Third col is special vector b in SONEST
-        x[:, 2] = ((-1)**np.arange(n)) * ( 1 + np.arange(n)/(n-1) );
+        x[:, 2] = ((-1) ** np.arange(n)) * (1 + np.arange(n) / (n - 1))
 
-        q = sl.orth(x)          #  Q*Q' is now the orthogonal projector onto span(e(1),e,b)).
+        # Q*Q' is now the orthogonal projector onto span(e(1),e,b)).
+        q = sl.orth(x)
         p = np.eye(n) - np.asmatrix(q) * np.asmatrix(q.T)
         a = np.eye(n) + theta * p
-
 
     # Pad out with identity as necessary.
     m, m = a.shape
     if m < n:
-        for i in range(n-1, m, -1):
+        for i in range(n - 1, m, -1):
             a[i, i] = 1
 
     return a

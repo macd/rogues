@@ -1,9 +1,11 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
 
-def hilb(n, m = 0):
+
+def hilb(n, m=0):
     """
     hilb   Hilbert matrix.
        hilb(n,m) is the n-by-m matrix with elements 1/(i+j-1).
@@ -30,13 +32,12 @@ def hilb(n, m = 0):
        generalized to take by row and column sizes.  If only a row size
        is given, we assume a square matrix is desired.
     """
-
     if n < 1 or m < 0:
         raise Higham("Matrix size must be one or greater")
     elif n == 1 and (m == 0 or m == 1):
         return np.array([[1]])
     elif m == 0:
         m = n
-    
+
     v = np.arange(1, n + 1) + np.arange(0, m)[:, np.newaxis]
     return 1. / v

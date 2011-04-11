@@ -1,6 +1,7 @@
 import numpy as np
 
-def pei(n, alpha = 1):
+
+def pei(n, alpha=1):
     """
     PEI    Pei matrix.
        pei(n, alpha), where alpha is a scalar, is the symmetric matrix
@@ -12,6 +13,6 @@ def pei(n, alpha = 1):
        M.L. Pei, A test matrix for inversion procedures,
        Comm. ACM, 5 (1962), p. 508.
     """
-    p = alpha*np.eye(n) + 1.
+    p = alpha * np.eye(n) + 1.
 
     return p

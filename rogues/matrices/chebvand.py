@@ -1,6 +1,7 @@
 import numpy as np
 
-def chebvand(m, p = None):
+
+def chebvand(m, p=None):
     """
     CHEBVAND  Vandermonde-like matrix for the Chebyshev polynomials.
           c = chebvand(p), where P is a vector, produces the (primal)
@@ -31,14 +32,14 @@ def chebvand(m, p = None):
     if nargin == 1:
         m = n
 
-    c = np.ones((m,n))
+    c = np.ones((m, n))
     if m == 1:
         return c
-        
-    c[1,:] = p
-    
+
+    c[1, :] = p
+
     #  Use Chebyshev polynomial recurrence.
     for i in range(2, m):
-        c[i, :] = 2. * p * c[i-1, :] - c[i-2, :]
+        c[i, :] = 2. * p * c[i - 1, :] - c[i - 2, :]
 
     return c

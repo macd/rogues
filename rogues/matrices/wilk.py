@@ -1,8 +1,10 @@
 import numpy as np
 from rogues.matrices import hilb
 
+
 class Higham(Exception):
     pass
+
 
 def wilk(n):
     """
@@ -24,35 +26,35 @@ def wilk(n):
     b = []
     if n == 3:
         # Wilkinson (1961) p.323.
-        a = [ [1e-10,   .9,  -.4], \
-              [0,     .9,  -.4],   \
-              [0,     0,  1e-10]]  
-        b = [   0,      0,    1]
+        a = [[1e-10, .9, -.4], \
+             [0, .9, -.4],     \
+             [0, 0, 1e-10]]
+        b = [0, 0, 1]
 
     elif n == 4:
         # Wilkinson (1963) p.105.
-        a = [[0.9143e-4,  0,          0,          0],  \
-             [0.8762,     0.7156e-4,  0,          0],  \
-             [0.7943,     0.8143,     0.9504e-4,  0],  \
-             [0.8017,     0.6123,     0.7165,     0.7123e-4]]
-        b = [0.6524,     0.3127,     0.4186,     0.7853]
+        a = [[0.9143e-4, 0, 0, 0],  \
+             [0.8762, 0.7156e-4, 0, 0],  \
+             [0.7943, 0.8143, 0.9504e-4, 0],  \
+             [0.8017, 0.6123, 0.7165, 0.7123e-4]]
+        b = [0.6524, 0.3127, 0.4186, 0.7853]
 
     elif n == 5:
         # Wilkinson (1965), p.234.
-        a = hilb(6,6)
+        a = hilb(6, 6)
         # drop off the last row and the first column
-        a = a[0:5, 1:6] * 1.8144    #pychok doesn't like this for some reason
+        a = a[0:5, 1:6] * 1.8144
         # return zero array for b
         b = np.zeros(5)
-        
+
     elif n == 21:
         # Taken from gallery.m.  Wilkinson (1965), p.308.
-        E = np.diag(np.ones(n-1), 1) 
-        m = (n-1)/2
-        a = np.diag(np.abs(np.arange(-m,m+1))) + E + E.T
+        E = np.diag(np.ones(n - 1), 1)
+        m = (n - 1) / 2
+        a = np.diag(np.abs(np.arange(-m, m + 1))) + E + E.T
         # return zero array for b
         b = np.zeros(21)
-        
+
     else:
         raise Higham("Sorry, that value of N is not available.")
 

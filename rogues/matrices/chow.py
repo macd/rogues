@@ -1,7 +1,8 @@
 import numpy as np
 from rogues.utils import toeplitz
 
-def chow(n, alpha = 1, delta = 0):
+
+def chow(n, alpha=1, delta=0):
     """
     chow(n, alpha, delta):  chow matrix - a singular toeplitz
         lower hessenberg matrix.
@@ -17,6 +18,6 @@ def chow(n, alpha = 1, delta = 0):
         G. Fairweather, On the eigenvalues and eigenvectors of a class of
            Hessenberg matrices, SIAM Review, 13 (1971), pp. 220-221.
     """
-    a = toeplitz( alpha ** np.arange(1,n+1), \
-                  np.r_[alpha, 1, np.zeros(n-2)] ) + delta*np.eye(n)
+    a = toeplitz(alpha ** np.arange(1, n + 1), \
+                 np.r_[alpha, 1, np.zeros(n - 2)]) + delta * np.eye(n)
     return a

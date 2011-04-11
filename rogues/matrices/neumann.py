@@ -1,8 +1,10 @@
 import numpy as np
 from rogues.utils import tridiag
 
+
 class Higham(Exception):
     pass
+
 
 def neumann(n):
     """
@@ -22,7 +24,7 @@ def neumann(n):
         m, n = n.shape
     except AttributeError:
         m = int(np.sqrt(n))
-        if m**2 != n:
+        if m ** 2 != n:
             raise Higham('N must be a perfect square.')
         n = m
 

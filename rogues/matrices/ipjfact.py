@@ -1,7 +1,8 @@
 import numpy as np
 from rogues.matrices import hankel
 
-def ipjfact(n, k = 0):
+
+def ipjfact(n, k=0):
     """
     ipjfact   A Hankel matrix with factorial elements.
           a = ipjfact(n, k) is the matrix with
@@ -18,9 +19,8 @@ def ipjfact(n, k = 0):
           M.J.C. Gover, The explicit inverse of factorial Hankel matrices,
           Dept. of Mathematics, University of Bradford, 1993.
     """
-
-    c = np.cumprod(np.arange(2, n+2))
-    d = np.cumprod(np.arange(n+1, 2*n+1)) * c[n-2]
+    c = np.cumprod(np.arange(2, n + 2))
+    d = np.cumprod(np.arange(n + 1, 2 * n + 1)) * c[n - 2]
 
     a = hankel(c, d)
 
@@ -36,17 +36,17 @@ def ipjfact(n, k = 0):
     #
     if k == 0:
         for i in range(1, n):
-            d = d * np.prod(np.arange(1, i+2, dtype = 'float64')) *  \
-                np.prod(np.arange(1, n - i + 1, dtype = 'float64'))
-             
-        d = d * np.prod(np.arange(1,n+2, dtype = 'float64'))
+            d = d * np.prod(np.arange(1, i + 2, dtype='float64')) *  \
+                np.prod(np.arange(1, n - i + 1, dtype='float64'))
+
+        d = d * np.prod(np.arange(1, n + 2, dtype='float64'))
     else:
         for i in range(0, n):
-            d = d * np.prod(np.arange(1,i, dtype = 'float64')) /    \
-                np.prod(np.arange(1, n+1+i, dtype = 'float64'))
+            d = d * np.prod(np.arange(1, i, dtype='float64')) /    \
+                np.prod(np.arange(1, n + 1 + i, dtype='float64'))
 
-        if  (n * (n-1) / 2) % 2:
+        if  (n * (n - 1) / 2) % 2:
             d = -d
     det_a = d
-     
+
     return a, det_a

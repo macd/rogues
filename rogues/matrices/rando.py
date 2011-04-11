@@ -1,6 +1,7 @@
 import numpy as np
 
-def rando(n, k = 1):
+
+def rando(n, k=1):
     """
     RANDO   Random matrix with elements -1, 0 or 1.
         a = rando(n, k) is a random n-by-n matrix with elements from
@@ -16,12 +17,12 @@ def rando(n, k = 1):
         m = n
 
     if k == 1:                    # {0, 1}
-        a = np.floor( np.random.rand(m,n) + .5 )
-        
+        a = np.floor(np.random.rand(m, n) + .5)
+
     elif k == 2:                  # {-1, 1}
-        a = 2* np.floor( np.random.rand(m,n) + .5 ) - 1
-          
+        a = 2 * np.floor(np.random.rand(m, n) + .5) - 1
+
     elif k == 3:                  # {-1, 0, 1}
-        a = np.round( 3*np.random.rand(m,n) - 1.5 )
+        a = np.round(3 * np.random.rand(m, n) - 1.5)
 
     return a

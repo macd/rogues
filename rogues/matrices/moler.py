@@ -1,7 +1,8 @@
 import numpy as np
 from rogues.matrices.triw import triw
 
-def moler(n, alpha = -1):
+
+def moler(n, alpha=-1):
     """
     MOLER   Moler matrix - symmetric positive definite.
         A = MOLER(N, ALPHA) is the symmetric positive definite N-by-N matrix

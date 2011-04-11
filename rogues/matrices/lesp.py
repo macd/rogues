@@ -1,6 +1,7 @@
 import numpy as np
 from rogues.utils import tridiag
 
+
 def lesp(n):
     """
     LESP   A tridiagonal matrix with real, sensitive eigenvalues.
@@ -22,9 +23,8 @@ def lesp(n):
             Mathematics, volume 260, Longman Scientific and Technical, Essex,
             UK, 1992, pp. 234-266.
     """
-    
     x = np.arange(2., n + 1)
-    y = -(2.*np.arange(2, n + 2) + 1)
-    t = tridiag( 1/x, y, x).todense()
+    y = -(2. * np.arange(2, n + 2) + 1)
+    t = tridiag(1 / x, y, x).todense()
 
     return t

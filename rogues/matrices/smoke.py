@@ -1,6 +1,7 @@
 import numpy as np
 
-def smoke(n, k = 0):
+
+def smoke(n, k=0):
     """
     smoke     smoke matrix - complex, with a `smoke ring' pseudospectrum.
           smoke(n) is an n-by-n matrix with 1s on the
@@ -18,8 +19,8 @@ def smoke(n, k = 0):
           L. Reichel and L.N. Trefethen, Eigenvalues and pseudo-eigenvalues of
           Toeplitz matrices, Linear Algebra and Appl., 162-164:153-185, 1992.
     """
-    w = np.exp(2 * np.pi * 1j/n)
-    a = np.diag( np.r_[w ** np.arange(1,n), 1] ) + np.diag(np.ones(n-1), 1)
+    w = np.exp(2 * np.pi * 1j / n)
+    a = np.diag(np.r_[w ** np.arange(1, n), 1]) + np.diag(np.ones(n - 1), 1)
     if k == 0:
         a[n - 1, 0] = 1
 

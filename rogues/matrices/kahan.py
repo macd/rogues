@@ -1,6 +1,7 @@
 import numpy as np
 
-def kahan(n, theta = 1.2, pert = 25):
+
+def kahan(n, theta=1.2, pert=25):
     """
     kahan  kahan matrix - upper trapezoidal.
        kahan(n, theta) is an upper trapezoidal matrix
@@ -37,16 +38,16 @@ def kahan(n, theta = 1.2, pert = 25):
     s = np.sin(theta)
     c = np.cos(theta)
 
-    u = np.matrix(np.eye(n) - c * np.triu(np.ones((n,n)), 1))
-    z = np.matrix(np.diag(s ** np.arange(0,n) ))
+    u = np.matrix(np.eye(n) - c * np.triu(np.ones((n, n)), 1))
+    z = np.matrix(np.diag(s ** np.arange(0, n)))
     eps = np.finfo(float).eps
-    u = z * u + pert * eps * np.matrix(np.diag( np.arange(n, 0, -1) ))
-    
+    u = z * u + pert * eps * np.matrix(np.diag(np.arange(n, 0, -1)))
+
     if r > n:
         # Extend to an r-by-n matrix.
-        u = np.vstack( (u, np.zeros(((r-n), n)) ) )
+        u = np.vstack((u, np.zeros(((r - n), n))))
     elif r < n:
         # Reduce to an r-by-n matrix.
-        u = u[:r, :]      
+        u = u[:r, :]
 
     return u

@@ -1,8 +1,10 @@
 import numpy as np
 
+
 def redheff(n):
     """
-    redheff    a (0,1) matrix of redheffer associated with the riemann hypothesis.
+    redheff    a (0,1) matrix of redheffer associated with the
+               riemann hypothesis.
            a = redheff(n) is an n-by-n matrix of 0s and 1s defined by
                a[i,j] = 1 if j = 0 or if (i+1) divides (j+1),
                a[i,j] = 0 otherwise.
@@ -27,7 +29,7 @@ def redheff(n):
            Linear Algebra and Appl., 162 (1992), pp. 673-683.
     """
     i = np.outer(np.arange(1, n + 1), np.ones(n))
-    a = np.where( np.remainder(i.T, i) == 0, 1, 0)
-    a[:,0] = np.ones(n)
+    a = np.where(np.remainder(i.T, i) == 0, 1, 0)
+    a[:, 0] = np.ones(n)
 
     return a

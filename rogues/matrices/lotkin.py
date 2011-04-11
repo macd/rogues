@@ -1,6 +1,7 @@
 import numpy as np
 from rogues.matrices import hilb
 
+
 def lotkin(n):
     """
     lotkin  lotkin matrix.
@@ -12,8 +13,7 @@ def lotkin(n):
         Reference:
         M. Lotkin, A set of test matrices, MTAC, 9 (1955), pp. 153-161.
     """
-    
     a = hilb(n)
-    a[0,:] = np.ones(n)
+    a[0, :] = np.ones(n)
 
     return a

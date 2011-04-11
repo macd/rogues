@@ -1,11 +1,14 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
 
-def hanowa(n, d = 1):
+
+def hanowa(n, d=1):
     """
-    hanowa  a matrix whose eigenvalues lie on a vertical line in the complex plane.
+    hanowa  a matrix whose eigenvalues lie on a vertical line in the
+            complex plane.
         hanowa(n, d) is the n-by-n block 2x2 matrix (thus n = 2m must be even)
                       [d*np.eye(m)   -np.diag(np.range(1,m+1))
                        np.diag(arange(1,m+1))   d*np.eye(m) ]
@@ -20,12 +23,13 @@ def hanowa(n, d = 1):
     if n % 2:
         raise Higham('n must be even.')
     else:
-        m = n/2
+        m = n / 2
 
     dg  = np.diag(np.arange(1, m + 1))
+    # Style / lint checkers will complain about the following two variables
+    # not being used because we are passing them into np.bmat as a string.
     mdg = -1 * dg
-    de  = d * np.eye(m)
-    # pychok chokes here because it cannot see that we are using mdg and de
-    a = np.bmat('de,  mdg; dg, de')  #PYCHOK 
+    de = d * np.eye(m)
+    a = np.bmat('de,  mdg; dg, de')
 
-    return a 
+    return a

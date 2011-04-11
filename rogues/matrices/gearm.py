@@ -1,9 +1,11 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
 
-def gearm(n, i = None, j = None):
+
+def gearm(n, i=None, j=None):
     """
     GEARM   Gear matrix.
         A = GEARM(N,I,J) is the N-by-N matrix with ones on the sub- and
@@ -27,10 +29,10 @@ def gearm(n, i = None, j = None):
         j = -(n - 1)
 
     if not(abs(i) < n and abs(j) < n):
-       raise Higham('Invalid i and j parameters')
+        raise Higham('Invalid i and j parameters')
 
-    a = np.diag(np.ones(n-1), -1) + np.diag(np.ones(n-1), 1)
+    a = np.diag(np.ones(n - 1), -1) + np.diag(np.ones(n - 1), 1)
     a[0, np.abs(i)] = np.sign(i)
-    a[n-1, n - 1 - np.abs(j)] = np.sign(j)
+    a[n - 1, n - 1 - np.abs(j)] = np.sign(j)
 
     return a

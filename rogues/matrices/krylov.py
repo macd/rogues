@@ -1,7 +1,8 @@
 import numpy as np
 import numpy.random as nrnd
 
-def krylov(a, x = None, j = None):
+
+def krylov(a, x=None, j=None):
     """
     KRYLOV    Krylov matrix.
           krylov(a, x, j) is the Krylov matrix
@@ -18,17 +19,17 @@ def krylov(a, x = None, j = None):
         n, n = a.shape
     except AttributeError:
         n = a
-        a = nrnd.randn(n,n)
+        a = nrnd.randn(n, n)
 
     if j == None:
         j = n
-        
-    if x == None:
-       x = np.ones(n)
 
-    b = np.ones((n,j))
+    if x == None:
+        x = np.ones(n)
+
+    b = np.ones((n, j))
     b[:, 0] = x
-    
+
     for i in range(1, j):
         b[:, i] = np.dot(a, b[:, i - 1])
 

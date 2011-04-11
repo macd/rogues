@@ -1,7 +1,8 @@
 import numpy as np
 import scipy.sparse as sparse
 
-def pentoep(n, a = 1, b = -10, c = 0, d = 10, e = 1):
+
+def pentoep(n, a=1, b=-10, c=0, d=10, e=1):
     """
     PENTOEP   Pentadiagonal Toeplitz matrix (sparse).
           p = pentoep(n, a, b, c, d, e) is the n-by-n pentadiagonal
@@ -24,9 +25,9 @@ def pentoep(n, a = 1, b = -10, c = 0, d = 10, e = 1):
              Numeriques, Editions Centre Nat. Recherche Sci., Paris, 165,
              1966, pp. 349-365.
     """
-    o1    = np.ones(n)
-    data  = np.vstack( (a*o1, b*o1, c*o1, d*o1, e*o1))
+    o1 = np.ones(n)
+    data = np.vstack((a * o1, b * o1, c * o1, d * o1, e * o1))
     diags = np.arange(-2, 3)
-    p     = sparse.spdiags(data, diags, n, n)
+    p = sparse.spdiags(data, diags, n, n)
 
     return p.todense()

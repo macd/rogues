@@ -3,10 +3,12 @@ import numpy.linalg as nl
 from rogues.matrices import qmult
 from rogues.utils import bandred
 
+
 class Higham(Exception):
     pass
 
-def randsvd(n, kappa = None, mode = 3, kl = None, ku = None):
+
+def randsvd(n, kappa=None, mode=3, kl=None, ku=None):
     """
     RANDSVD  Random matrix with pre-assigned singular values.
       randsvd(n, kappa, mode, kl, ku) is a (banded) random matrix of order n
@@ -50,11 +52,11 @@ def randsvd(n, kappa = None, mode = 3, kl = None, ku = None):
         p = n
 
     if kappa == None:
-        kappa = np.sqrt(1/np.finfo(float).eps)
-        
+        kappa = np.sqrt(1 / np.finfo(float).eps)
+
     if kl == None:
         kl = n - 1          # Full matrix.
-        
+
     if ku == None:
         ku = kl             # Same upper and lower bandwidths.
 
@@ -67,7 +69,7 @@ def randsvd(n, kappa = None, mode = 3, kl = None, ku = None):
         kappa = -kappa
 
     if p == 1:              # Handle case where a is a vector, not a matrix
-        a = np.random.randn(max(m,n))
+        a = np.random.randn(max(m, n))
         a = a / nl.norm(a)
         return a
 
@@ -75,24 +77,23 @@ def randsvd(n, kappa = None, mode = 3, kl = None, ku = None):
 
     # Set up vector sigma of singular values.
     if j == 3:
-        factor = kappa ** (-1/(p-1))
+        factor = kappa ** (-1 / (p - 1))
         sigma = factor ** np.arange(0, p)
 
     elif j == 4:
-        sigma = np.ones(p) - np.arange(p) / (p-1)*(1-1/kappa)
+        sigma = np.ones(p) - np.arange(p) / (p - 1) * (1 - 1 / kappa)
 
     elif j == 5:
         # In this case cond(a) <= kappa
-        sigma = np.exp( -np.random.rand(size = p) * np.log(kappa) )
+        sigma = np.exp(-np.random.rand(size=p) * np.log(kappa))
 
     elif j == 2:
         sigma = np.ones(p)
-        sigma[p-1] = 1 / kappa
+        sigma[p - 1] = 1 / kappa
 
     elif j == 1:
         sigma = np.ones(p) / kappa
         sigma[0] = 1
-
 
     # Convert to diagonal matrix of singular values.
     if mode < 0:
@@ -103,26 +104,25 @@ def randsvd(n, kappa = None, mode = 3, kl = None, ku = None):
     if is_posdef:               # Handle special case.
         q = qmult(p)
         a = np.matrix(q.T) * np.matrix(sigma) * np.matrix(q)
-        a = (a + a.T) / 2       # Ensure matrix is symmetric.
+        a = (a + a.T) / 2.      # Ensure matrix is symmetric.
         return a
 
     # Expand matrix, if necessary
     if m > n:
-        sigma = np.vstack( (sigma, np.zeros((m-n, n)) ) )
+        sigma = np.vstack((sigma, np.zeros((m - n, n))))
     elif m < n:
-        sigma = np.hstack( (sigma, np.zeros((m, n-m)) ) )
-                           
-    if kl == 0 and ku == 0:    # Diagonal matrix requested - nothing more to do.
+        sigma = np.hstack((sigma, np.zeros((m, n - m))))
+
+    if kl == 0 and ku == 0:  # Diagonal matrix requested - nothing more to do.
         a = sigma
         return a
-
 
     # A = U*sigma*V, where U, V are random orthogonal matrices from the
     # Haar distribution.
     a = qmult(sigma.T)
     a = qmult(a.T)
 
-    if kl < n-1 or ku < n-1:   # Bandwidth reduction.
+    if kl < n - 1 or ku < n - 1:   # Bandwidth reduction.
         a = bandred(a, kl, ku)
 
     return a

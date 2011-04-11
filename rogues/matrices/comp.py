@@ -1,6 +1,7 @@
 import numpy as np
 
-def comp(a, k = 0):
+
+def comp(a, k=0):
     """
     COMP    Comparison matrices.
         comp(a) is diag(b) - tril(b,-1) - triu(b,1), where b = abs(a).
@@ -20,12 +21,12 @@ def comp(a, k = 0):
 
     if k == 0:
 
-        # This code uses less temporary storage than the `high level' 
-        # definition above. (well, maybe... not clear that this is so 
+        # This code uses less temporary storage than the `high level'
+        # definition above. (well, maybe... not clear that this is so
         # in numpy as opposed to m*lab)
         c = -abs(a)
         for j in range(p):
-           c[j, j] = np.abs(a[j,j])
+            c[j, j] = np.abs(a[j, j])
 
     elif k == 1:
 
@@ -35,15 +36,15 @@ def comp(a, k = 0):
 
         mx = np.empty(p)
         for j in range(p):
-            mx[j] = max(abs(c[j,:]))
-           
+            mx[j] = max(abs(c[j, :]))
+
         c = -np.outer(mx * np.ones(n))
         for j in range(p):
-            c[j,j] = abs(a[j,j])
+            c[j, j] = abs(a[j, j])
 
-        if ( a == np.tril(a) ).all():
+        if (a == np.tril(a)).all():
             c = np.tril(c)
-        if ( a == np.triu(a) ).all():
+        if (a == np.triu(a)).all():
             c = np.triu(c)
 
     return c

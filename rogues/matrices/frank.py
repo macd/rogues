@@ -1,6 +1,7 @@
 import numpy as np
 
-def frank(n, k = 0):
+
+def frank(n, k=0):
     """
     frank(n, k = 0) Frank matrix---ill conditioned eigenvalues.
         f = frank(n, k) is the Frank matrix of order N.  It is upper
@@ -38,18 +39,18 @@ def frank(n, k = 0):
            Math., 20 (1971), pp. 87-92.
         J.M. Varah, A generalization of the Frank matrix, SIAM J. Sci. Stat.
            Comput., 7 (1986), pp. 835-839.
+
+    NOTE: This is a slightly different implementation from Version 3.  It
+    loosely follows the TOMS694 version, _except_ that it directly computes
+    the frank matrix, instead of its anti-transposed version.  Therefore,
+    we take the anti-transpose if k == 1
     """
 
-    # This is a slightly different implementation from Version 3.  It loosely
-    # follows the TOMS694 version, _except_ that it directly computes the frank
-    # matrix, instead of its anti-transposed version.  Therefore, we take the
-    # anti-transpose if k == 1
-    #
-    f = np.ones((n,n)) * np.arange(n, 0, -1)
+    f = np.ones((n, n)) * np.arange(n, 0, -1)
     f = np.minimum(f, f.T)
     #   take upper Hessenberg part.
     f = np.triu(f, -1)
     if k == 1:
-        f = f[::-1,::-1].T
+        f = f[::-1, ::-1].T
 
     return f

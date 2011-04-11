@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def riemann(n):
     """
     RIEMANN    A matrix associated with the Riemann hypothesis.
@@ -23,6 +24,6 @@ def riemann(n):
     n  = n + 1
     i  = np.outer(np.arange(2, n + 1), np.ones(n - 1))
     j  = i.T
-    a  = np.where(np.remainder(j,i) == 0, i, -1)
+    a  = np.where(np.remainder(j, i) == 0, i, -1)
 
     return a

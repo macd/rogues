@@ -1,6 +1,7 @@
 import numpy as np
 
-def clement(n, k = 0):
+
+def clement(n, k=0):
     """
     CLEMENT   Clement matrix - tridiagonal with zero diagonal entries.
           CLEMENT(N, K) is a tridiagonal matrix with zero diagonal entries
@@ -26,12 +27,12 @@ def clement(n, k = 0):
           O. Taussky and J. Todd, Another look at a matrix of Mark Kac,
              Linear Algebra and Appl., 150 (1991), pp. 341-360.
     """
-    z = np.arange(1,n)
+    z = np.arange(1, n)
 
     if k == 0:
         a = np.diag(z[::-1], -1) + np.diag(z, 1)
     else:
-        y = np.sqrt(z[::-1]*z)
+        y = np.sqrt(z[::-1] * z)
         a = np.diag(y, -1) + np.diag(y, 1)
 
     return a

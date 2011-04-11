@@ -1,6 +1,7 @@
 import numpy as np
 from rogues.matrices import cauchy
 
+
 def dingdong(n):
     """
     dingdong  dingdong matrix - a symmetric Hankel matrix.
@@ -15,7 +16,7 @@ def dingdong(n):
           Algebra and Function Minimisation, second edition, Adam Hilger,
           Bristol, 1990 (Appendix 1).
     """
-    p = -2*np.arange(1,n + 1) + (n + 1.5)
-    a = cauchy(p);
+    p = -2 * np.arange(1, n + 1) + (n + 1.5)
+    a = cauchy(p)
 
     return a

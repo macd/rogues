@@ -1,5 +1,5 @@
-import numpy as np
 from rogues.matrices import hilb
+
 
 def invol(n):
     """
@@ -14,14 +14,14 @@ def invol(n):
         of involutory and of idempotent matrices, Numer. Math. 5 (1963),
         pp. 234-237.
     """
-    
+
     a = hilb(n)
 
     d = -n
     a[:, 0] = d * a[:, 0]
 
     for i in range(n - 1):
-        d = -(n+i+1)*(n-i-1)*d/float((i+1)*(i+1))
-        a[i+1, :] = d * a[i+1, :]
+        d = -(n + i + 1) * (n - i - 1) * d / float((i + 1) * (i + 1))
+        a[i + 1, :] = d * a[i + 1, :]
 
     return a

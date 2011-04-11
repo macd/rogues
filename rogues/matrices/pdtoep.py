@@ -1,9 +1,11 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
 
-def pdtoep(n, m = None, w = None, theta = None):
+
+def pdtoep(n, m=None, w=None, theta=None):
     """
     PDTOEP   Symmetric positive definite Toeplitz matrix.
          PDTOEP(N, M, W, THETA) is an N-by-N symmetric positive (semi-)
@@ -21,10 +23,10 @@ def pdtoep(n, m = None, w = None, theta = None):
     """
     if m == None:
         m = n
-        
+
     if w == None:
         w = np.random.rand(m)
-        
+
     if theta == None:
         theta = np.random.rand(m)
 
@@ -35,9 +37,10 @@ def pdtoep(n, m = None, w = None, theta = None):
         raise Higham('Arguments w and theta must be vectors of length M.')
 
     t = np.zeros(n)
-    e = 2 * np.pi * ( np.outer(np.arange(1, n+1), np.ones(n)) - np.ones(n)*np.arange(1, n+1))
+    e = 2 * np.pi * (np.outer(np.arange(1, n + 1), np.ones(n)) - \
+                     np.ones(n) * np.arange(1, n + 1))
 
     for i in range(m):
-        t = t + w[i] * np.cos( theta[i] * e )
+        t = t + w[i] * np.cos(theta[i] * e)
 
     return t

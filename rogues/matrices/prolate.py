@@ -1,7 +1,8 @@
 import numpy as np
 from rogues.utils import toeplitz
 
-def prolate(n, w = 0.25):
+
+def prolate(n, w=0.25):
     """
     PROLATE   Prolate matrix - symmetric, ill-conditioned Toeplitz matrix.
           A = PROLATE(N, W) is the N-by-N prolate matrix with parameter W.
@@ -18,7 +19,8 @@ def prolate(n, w = 0.25):
     """
     a = np.zeros(n)
     a[0] = 2 * w
-    a[1:n] = np.sin( 2*np.pi*w*np.arange(1,n) ) / ( np.pi*np.arange(1,n) )
+    a[1:n] = np.sin(2 * np.pi * w * np.arange(1, n)) / \
+             (np.pi * np.arange(1, n))
 
     t = toeplitz(a)
 

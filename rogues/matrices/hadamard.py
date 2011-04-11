@@ -1,8 +1,10 @@
 import numpy as np
 import rogues
 
+
 class Higham(Exception):
     pass
+
 
 def hadamard(n):
     """
@@ -18,15 +20,16 @@ def hadamard(n):
              Amer. Math. Monthly, 70 (1963) pp. 12-17.
           http://en.wikipedia.org/wiki/Hadamard_matrix
           Weisstein, Eric W. "Hadamard Matrix." From MathWorld--
-             A Wolfram Web Resource. http://mathworld.wolfram.com/HadamardMatrix.html
+             A Wolfram Web Resource:
+             http://mathworld.wolfram.com/HadamardMatrix.html
     """
-    
-    f, e = np.frexp(np.array([n, n/12., n/20.]))
+
+    f, e = np.frexp(np.array([n, n / 12., n / 20.]))
 
     try:
         # If more than one condition is satified, this will always
         # pick the first one.
-        k = [i for i in range(3) if (f==0.5)[i] and (e>0)[i] ].pop() 
+        k = [i for i in range(3) if (f == 0.5)[i] and (e > 0)[i]].pop()
     except IndexError:
         raise Higham('N, N/12 or N/20 must be a power of 2.')
 
@@ -36,18 +39,18 @@ def hadamard(n):
         h = np.array([1])
 
     elif k == 1:      # N = 12 * 2^e;
-        tp = rogues.toeplitz( np.array([-1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1]),
-                              np.array([-1, 1, -1, 1, 1, 1, -1, -1, -1, 1, -1]) )
-        h = np.vstack( (np.ones((1,12)), np.hstack( (np.ones((11,1)), tp))))
+        tp = rogues.toeplitz(np.array([-1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1]),
+                             np.array([-1, 1, -1, 1, 1, 1, -1, -1, -1, 1, -1]))
+        h = np.vstack((np.ones((1, 12)), np.hstack((np.ones((11, 1)), tp))))
 
     elif k == 2:     # N = 20 * 2^e;
         hk = rogues.hankel(
                 np.array([-1, -1, 1, 1, -1, -1, -1, -1, 1,
                           -1, 1, -1, 1, 1, 1, 1, -1, -1, 1]),
                 np.array([1, -1, -1, 1, 1, -1, -1, -1, -1,
-                          1, -1, 1, -1, 1, 1, 1, 1, -1, -1]) )
-        h = np.vstack((np.ones((1,20)), np.hstack((np.ones((19,1)), hk))))
-        
+                          1, -1, 1, -1, 1, 1, 1, 1, -1, -1]))
+        h = np.vstack((np.ones((1, 20)), np.hstack((np.ones((19, 1)), hk))))
+
     #  Kronecker product construction.
 
     mh = -1 * h

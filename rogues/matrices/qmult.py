@@ -2,6 +2,7 @@ import numpy as np
 import numpy.linalg as nl
 import numpy.random as nrnd
 
+
 def qmult(b):
     """
     QMULT  Pre-multiply by random orthogonal matrix.
@@ -20,6 +21,7 @@ def qmult(b):
     try:
         n, m = b.shape
         a = b.copy()
+
     except AttributeError:
         n = b
         a = np.eye(n)
@@ -30,7 +32,8 @@ def qmult(b):
         # Generate random Householder transformation.
         x = nrnd.randn(n - k)
         s = nl.norm(x)
-        sgn = np.sign(x[0]) + float(x[0]==0)    # Modification to make sign(0)=1.
+        # Modification to make sign(0) == 1
+        sgn = np.sign(x[0]) + float(x[0] == 0)
         s = sgn * s
         d[k] = -sgn
         x[0] = x[0] + s
@@ -41,10 +44,10 @@ def qmult(b):
         a[k:n, :] = a[k:n, :] - np.outer(x, (y / beta))
 
     # Tidy up signs.
-    for i in range(n-1):
-        a[i,:] = d[i] * a[i, :]
+    for i in range(n - 1):
+        a[i, :] = d[i] * a[i, :]
 
     # Now randomly change the sign (Gaussian dist)
-    a[n-1, :] = a[n-1, :] * np.sign(nrnd.randn())
+    a[n - 1, :] = a[n - 1, :] * np.sign(nrnd.randn())
 
     return a

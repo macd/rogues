@@ -1,7 +1,9 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
+
 
 def compan(p):
     """
@@ -32,26 +34,25 @@ def compan(p):
             a = compan(np.poly(p))
             return a
         else:
-            # Hmm, the commented stmt matches the logic in the m*lab code but it
-            # would seem to be on a false path in the control logic,
+            # Hmm, the commented stmt matches the logic in the m*lab code but
+            # it would seem to be on a false path in the control logic,
             # ie compan shouldn't be defined for a non square matrix
             # so here we error out when that happens.
             #n = max(n,m)
             raise Higham("Input matrix 'a' must be square with dimension > 1")
-        
+
     except ValueError:
         n, = p.shape
-        
+
     except AttributeError:
         n = p + 1
         p = np.arange(1, n + 1)
-
 
     # Construct matrix of order n - 1
     if n == 2:
         a = 1
     else:
-        a = np.diag(np.ones(n-2), -1)
-        a[0,:] = -p[1:n]/p[0]
+        a = np.diag(np.ones(n - 2), -1)
+        a[0, :] = -p[1:n] / p[0]
 
     return a

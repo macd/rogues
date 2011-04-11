@@ -1,6 +1,7 @@
 import numpy as np
 
-def pascal(n, k = 0):
+
+def pascal(n, k=0):
     """
     PASCAL  Pascal matrix.
         p = pascal(n) is the pascal matrix of order n: a symmetric positive
@@ -41,23 +42,23 @@ def pascal(n, k = 0):
     verified, especially the eigenvalues being reprocal pairs (all of which
     have the same constant value of one).  det(pascal(n)) is also ~one up to
     and including n=17.  At n=18 things go to hell and this appears to be
-    where we step off a cliff 
+    where we step off a cliff
     """
-
-    p = np.diag( (-1)**np.arange(n) )
+    p = np.diag((-1) ** np.arange(n))
     p[:, 0] = np.ones(n)
 
     #  Generate the Pascal Cholesky factor (up to signs).
     for j in range(1, n - 1):
-        for i in range(j+1, n):
-            p[i, j] = p[i-1, j] - p[i-1, j-1]
+        for i in range(j + 1, n):
+            p[i, j] = p[i - 1, j] - p[i - 1, j - 1]
 
     if k == 0:
         p = np.matrix(p) * np.matrix(p.T)
 
     elif k == 2:
         p = np.rot90(p, 3)
-        if n/2 == round(n/2):
+        # CHECKME need to check .m file to see if this logic is correct
+        if n / 2 == round(n / 2):
             p = -p
 
     return p

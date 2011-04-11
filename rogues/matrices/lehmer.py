@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def lehmer(n):
     """
     lehmer  lehmer matrix - symmetric positive definite.
@@ -17,8 +18,8 @@ def lehmer(n):
         J. Todd, Basic Numerical Mathematics, Vol. 2: Numerical Algebra,
            Birkhauser, Basel, and Academic Press, New York, 1977, p. 154.
     """
-    a = np.outer(np.ones(n), np.arange(1,n+1))
+    a = np.outer(np.ones(n), np.arange(1, n + 1))
     a = a / a.T
-    a = np.tril(a) + np.tril(a,-1).T
+    a = np.tril(a) + np.tril(a, -1).T
 
     return a

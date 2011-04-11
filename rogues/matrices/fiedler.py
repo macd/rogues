@@ -1,7 +1,9 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
+
 
 def fiedler(c):
     """
@@ -30,12 +32,13 @@ def fiedler(c):
         if len(c.shape) != 1:
             raise Higham("Only 1-D vectors or scalers are valid input")
         n, = c.shape
+
     except AttributeError:
         # c must be a scalar integer
         n = c
         c = np.arange(1, n + 1)
-    
-    a = np.ones((n,n))* c
+
+    a = np.ones((n, n)) * c
     a = abs(a - a.T)        # NB. array transpose.
 
     return a

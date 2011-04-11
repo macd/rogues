@@ -1,9 +1,11 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
 
-def triw(n, alpha = -1, k = 0):
+
+def triw(n, alpha=-1, k=0):
     """
     triw   Upper triangular matrix discussed by Wilkinson and others.
        triw(n, alpha, k) is the upper triangular matrix with ones on
@@ -34,9 +36,8 @@ def triw(n, alpha = -1, k = 0):
           in D.A.H. Jacobs, ed., Numerical Software---Needs and Availability,
           Academic Press, London, 1978, pp. 109-135.
     """
-
     try:
-        m,n = n
+        m, n = n
     except TypeError:
         m = n
 
@@ -46,6 +47,6 @@ def triw(n, alpha = -1, k = 0):
     if np.array(alpha).size != 1:
         raise Higham("Second Argument Must Be A Scalar.")
 
-    t = np.tril( np.eye(m,n) + alpha * np.triu(np.ones((m,n)), 1), k)
+    t = np.tril(np.eye(m, n) + alpha * np.triu(np.ones((m, n)), 1), k)
 
     return t

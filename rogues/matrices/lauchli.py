@@ -1,6 +1,7 @@
 import numpy as np
 
-def lauchli(n, mu = None):
+
+def lauchli(n, mu=None):
     """
     LAUCHLI   Lauchli matrix - rectangular.
           lauchli(n, mu) is the (n+1)-by-n matrix vstack(ones(1), mu*eye(n))
@@ -14,7 +15,7 @@ def lauchli(n, mu = None):
     """
     if mu == None:
         mu = np.sqrt(np.finfo(float).eps)
-        
-    a = np.vstack((np.ones(n), mu*np.eye(n)))
+
+    a = np.vstack((np.ones(n), mu * np.eye(n)))
 
     return a

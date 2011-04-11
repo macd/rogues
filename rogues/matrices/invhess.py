@@ -1,9 +1,11 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
 
-def invhess(x, y = None):
+
+def invhess(x, y=None):
     """
     invhess  inverse of an upper hessenberg matrix.
          invhess(x, y), where x is an n-vector and y an n-1 vector,
@@ -36,6 +38,6 @@ def invhess(x, y = None):
 
     a = np.outer(np.ones(n), x)
     for j in range(1, n):
-        a[:j-1, j] = y[:j-1]
+        a[:j - 1, j] = y[:j - 1]
 
     return a

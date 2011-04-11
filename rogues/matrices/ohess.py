@@ -1,7 +1,9 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
+
 
 def ohess(x):
     """
@@ -31,19 +33,19 @@ def ohess(x):
         n = np.max(x.shape)
         h = np.eye(n)
         # Second term ensures h[n-1, n-1] nonzero.
-        h[n-1,n-1] = np.sign(x[n-1]) + float(x[n-1]==0)   
+        h[n - 1, n - 1] = np.sign(x[n - 1]) + float(x[n - 1] == 0)
     except AttributeError:
         n = x
-        x = np.random.uniform(size = n-1) * 2 * np.pi
+        x = np.random.uniform(size=n - 1) * 2 * np.pi
         h = np.eye(n)
-        h[n-1,n-1] = np.sign(np.random.randn())
-        
+        h[n - 1, n - 1] = np.sign(np.random.randn())
+
     for i in range(n - 1, 0, -1):
         # Apply Givens rotation through angle x[i - 1]
         theta = x[i - 1]
         c = np.cos(theta)
         s = np.sin(theta)
-        h[i-1:i+1, :] = np.vstack( (c*h[i-1,:] + s*h[i,:],  \
-                                   -s*h[i-1,:] + c*h[i,:] ) )
+        h[i - 1:i + 1, :] = np.vstack((c * h[i - 1, :] + s * h[i, :], \
+                                   -s * h[i - 1, :] + c * h[i, :]))
 
     return h

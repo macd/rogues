@@ -1,6 +1,7 @@
 import numpy as np
 
-def grcar(n, k = 3):
+
+def grcar(n, k=3):
     """
     GRCAR     Grcar matrix - a Toeplitz matrix with sensitive eigenvalues.
           GRCAR(N, K) is an N-by-N matrix with -1s on the
@@ -20,6 +21,6 @@ def grcar(n, k = 3):
                Appl., 13 (1992), pp. 796-825.
     """
 
-    g = np.tril(np.triu(np.ones((n,n))), k) - np.diag(np.ones(n-1), -1)
+    g = np.tril(np.triu(np.ones((n, n))), k) - np.diag(np.ones(n - 1), -1)
 
     return g

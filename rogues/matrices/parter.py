@@ -1,6 +1,7 @@
 import numpy as np
 from rogues.matrices import cauchy
 
+
 def parter(n):
     """
     PARTER    Parter matrix - a Toeplitz matrix with singular values near PI.
@@ -19,6 +20,6 @@ def parter(n):
           E.E. Tyrtyshnikov, Cauchy-Toeplitz matrices and some applications,
                Linear Algebra and Appl., 149 (1991), pp. 1-18.
     """
-    a = cauchy( np.arange(1, n + 1) + 0.5, -np.arange(1, n + 1) )
+    a = cauchy(np.arange(1, n + 1) + 0.5, -np.arange(1, n + 1))
 
     return a
