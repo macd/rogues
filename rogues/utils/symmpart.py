@@ -1,5 +1,3 @@
-import numpy as np
-
 def symmpart(a):
     """
     SYMMPART  Symmetric (Hermitian) part.
@@ -7,6 +5,5 @@ def symmpart(a):
           It is the nearest symmetric (Hermitian) matrix to A in both the
           2- and the Frobenius norms.
     """
-    s = (a + a.T)/2.
+    s = (a + a.T) / 2.
     return s
-

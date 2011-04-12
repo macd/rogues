@@ -1,9 +1,11 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
 
-def hankel(a, b = None):
+
+def hankel(a, b=None):
     """
     hankel(a) returns a toeplitz matrix given "a", the first row of the
     matrix.  This matrix is defined as:
@@ -46,7 +48,7 @@ def hankel(a, b = None):
 
     # Error checking...
     try:
-        m,  = a.shape
+        m, = a.shape
         if b != None:
             n, = b.shape
     except (ValueError, AttributeError):
@@ -60,7 +62,7 @@ def hankel(a, b = None):
 
     k = np.r_[a, b[1:]]
     h = k[:n]
-    for i in xrange(1,m):
-        h = np.vstack((h, k[i:i+n]))
-    
+    for i in xrange(1, m):
+        h = np.vstack((h, k[i:i + n]))
+
     return h

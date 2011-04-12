@@ -1,7 +1,9 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
+
 
 def ge(b):
     """
@@ -24,7 +26,7 @@ def ge(b):
         Reference:
         N.J. Higham, Optimization by direct search in matrix computations,
         SIAM J. Matrix Anal. Appl, 14(2): 317-333, April 1993.
-       
+
     """
     a = b.copy()    # don't cream the input matrix
     n, n = a.shape
@@ -33,17 +35,18 @@ def ge(b):
 
     for k in range(n - 1):
 
-        if a[k,k] == 0:
+        if a[k, k] == 0:
             raise Higham('Elimination breaks down with zero pivot.')
 
-        a[k+1:n,k] = a[k+1:n,k] / a[k,k]          # Multipliers.
+        a[k + 1:n, k] = a[k + 1:n, k] / a[k, k]          # Multipliers.
 
         # Elimination
-        a[k+1:n, k+1:n] = a[k+1:n, k+1:n] - np.outer(a[k+1:n, k], a[k, k+1:n])
-        rho = max( rho, (abs(a[k+1:n, k+1:n])).max()  )
+        a[k + 1:n, k + 1:n] = a[k + 1:n, k + 1:n] - \
+                              np.outer(a[k + 1:n, k], a[k, k + 1:n])
+        rho = max(rho, (abs(a[k + 1:n, k + 1:n])).max())
 
     l = np.tril(a, -1) + np.eye(n)
     u = np.triu(a)
-    rho = rho/maxA
+    rho = rho / maxA
 
     return l, u, rho

@@ -1,6 +1,7 @@
 import numpy as np
 
-def vecperm(m, n = None):
+
+def vecperm(m, n=None):
     """
     VECPERM    Vec-permutation matrix.
            VECPERM(M, N) is the vec-permutation matrix, an MN-by-MN
@@ -19,12 +20,12 @@ def vecperm(m, n = None):
     if n == None:
         n = m
 
-    p = np.zeros((m*n, m*n))
-    e = np.eye(m*n)
+    p = np.zeros((m * n, m * n))
+    e = np.eye(m * n)
 
     k = 0
     for i in range(n):
-       p[k:k+n, :] = e[i:m*n:n, :]
-       k += n
+        p[k:k + n, :] = e[i:m * n:n, :]
+        k += n
 
     return p

@@ -1,9 +1,11 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
 
-def dual(x, p = None):
+
+def dual(x, p=None):
     """
     DUAL    Dual vector with respect to Holder p-norm.
         y = dual(x, p), where 1 <= p <= inf, is a vector of unit q-norm
@@ -18,12 +20,12 @@ def dual(x, p = None):
 
     if p == None:
         if len(x) == 1:
-            y = 1/(1-1/x)
+            y = 1 / (1 - 1 / x)
             return
         else:
             raise Higham('Second argument missing.')
 
-    q = 1 / (1 - 1/float(p))
+    q = 1 / (1 - 1 / float(p))
 
     if np.linalg.norm(x, np.inf) == 0:
         y = x
@@ -39,8 +41,9 @@ def dual(x, p = None):
 
     else:
         # 1 < p < inf.  Dual is unique in this case.
-        x = x / np.linalg.norm(x, np.inf)         # This scaling helps to avoid under/over-flow.
-        y = np.abs(x)**(p-1) * np.where(np.sign(x)==0, 1, np.sign(x))
+        # This scaling helps to avoid under/over-flow.
+        x = x / np.linalg.norm(x, np.inf)
+        y = np.abs(x) ** (p - 1) * np.where(np.sign(x) == 0, 1, np.sign(x))
         y = y / np.linalg.norm(y, q)         # Normalize to unit q-norm.
 
     return y

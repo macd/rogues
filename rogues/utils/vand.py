@@ -1,6 +1,7 @@
 import numpy as np
 
-def vand(p, m = 0):
+
+def vand(p, m=0):
     """
     VAND   Vandermonde matrix.
        v = vand(p), where p is a vector, produces the (primal)
@@ -18,7 +19,7 @@ def vand(p, m = 0):
        You should probably use np.vander instead of this function, but
        then the interface is different and you get the row reversed
        transpose of the matrix ( ie a.T[::-1,:] ) returned by vand
-       
+
        WARNING... changed the function signiture from the Higham m*lab version
        by reversing the order of the arguments.
     """
@@ -32,8 +33,8 @@ def vand(p, m = 0):
     if m == 0:
         m = n
 
-    v = np.ones((m,n))
+    v = np.ones((m, n))
     for i in range(1, m):
-        v[i, :] = p * v[i-1, :]
+        v[i, :] = p * v[i - 1, :]
 
     return v

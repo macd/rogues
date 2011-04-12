@@ -1,16 +1,18 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
+
 
 def house(x):
     """
     house(x)   Householder matrix.
         If
-           v, beta = house(x)             then
-           h  = eye - beta* np.outer(v, v)            is a Householder matrix such that
+           v, beta = house(x) then
+           h  = eye - beta* np.outer(v, v)  is a Householder matrix such that
            Hx = -sign(x[0]) * norm(x) * e_1
-           
+
         NB: If x = 0 then v = 0, beta = 1 is returned.
             x can be real or complex.
             sign(x) := exp(i*arg(x)) ( = x / abs(x) when x ~= 0).
@@ -38,12 +40,12 @@ def house(x):
     if len(x.shape) == 1:
         n, = x.shape
     elif len(x.shape) == 2:
-        n,m = x.shape
+        n, m = x.shape
         if m != 1:
             raise Higham("x must be a vector")
     else:
         raise Higham("x must be a vector")
-    
+
     # In numpy sign(0) = 0.0 and it looks like that might be the same in
     # m*lab.  Here we need sign(0) to be 1, rather than zero, which is the
     # reason for the code below.
@@ -51,25 +53,26 @@ def house(x):
     sg = 1.0
     if np.sign(x[0]) < 0:
         sg = np.sign(x[0])
-        
+
     s = sg * np.linalg.norm(x)
     v = x.copy()            # must copy or else x[0] get creamed
-    
+
     # Quit if x is the zero vector.
     if s == 0:
         beta = 1
         return
-        
+
     v[0] += s
-    
+
     try:
         s = s.conjugate()
     except AttributeError:
         pass
-    
+
     beta = 1 / (s * v[0])                           # NB the conjugated s.
 
     # beta = 1/(abs(s)*(abs(s)+abs(x(1)) would guarantee beta real.
-    # But beta as above can be non-real (due to rounding) only when x is complex.
+    # But beta as above can be non-real (due to rounding) only when
+    # x is complex.
 
     return v, beta, s

@@ -1,10 +1,12 @@
 import numpy as np
 from rogues.utils.house import house
 
+
 class Higham(Exception):
     pass
 
-def bandred(x, kl = 0, ku = -1):
+
+def bandred(x, kl=0, ku=-1):
     """
     BANDRED  Band reduction by two-sided unitary transformations.
          B = BANDRED(A, KL, KU) is a matrix unitarily equivalent to A
@@ -25,9 +27,10 @@ def bandred(x, kl = 0, ku = -1):
     """
     # Work on a local copy of the array.
     a = x.copy()
-    
+
     if kl == 0 and (ku == 0 or ku == -1):
-        raise Higham('You''ve asked for a diagonal matrix.  In that case use the SVD!')
+        raise Higham("You've asked for a diagonal matrix. " \
+                     "In that case use the SVD!")
     elif ku == -1:
         # set ku to k1 if it has not yet been set
         ku = kl
@@ -42,19 +45,18 @@ def bandred(x, kl = 0, ku = -1):
 
     m, n = a.shape
 
-    for j in range( min( min(m,n), max(m-kl-1, n-ku-1) )):
-
+    for j in range(min(min(m, n), max(m - kl - 1, n - ku - 1))):
         if j + kl + 1 <= m:
-            v, beta, s = house( a[j+kl:m, j] )
-            temp = a[j+kl:m, j:n]
-            a[j+kl:m, j:n] = temp - beta * np.outer(v, np.dot(v, temp))
-            a[j+kl+1:m,j]  = np.zeros(m-j-kl-1)
+            v, beta, s = house(a[j + kl:m, j])
+            temp = a[j + kl:m, j:n]
+            a[j + kl:m, j:n] = temp - beta * np.outer(v, np.dot(v, temp))
+            a[j + kl + 1:m, j] = np.zeros(m - j - kl - 1)
 
         if j + ku + 1 <= n:
-            v, beta, s = house( a[j, j+ku:n] )
-            temp = a[j:m, j+ku:n]
-            a[j:m,j+ku:n] = temp - beta*np.outer(np.dot(temp, v), v)
-            a[j,j+ku+1:n] = np.zeros(n-j-ku-1)
+            v, beta, s = house(a[j, j + ku:n])
+            temp = a[j:m, j + ku:n]
+            a[j:m, j + ku:n] = temp - beta * np.outer(np.dot(temp, v), v)
+            a[j, j + ku + 1:n] = np.zeros(n - j - ku - 1)
 
     if flip == 1:
         a = a.T

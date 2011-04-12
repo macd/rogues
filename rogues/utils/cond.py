@@ -1,9 +1,11 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
 
-def cond(a, p = 2):
+
+def cond(a, p=2):
     """
     COND   Matrix condition number in 1, 2, Frobenius, or infinity norm.
        For p = 1, 2, 'fro', inf,  COND(A,p) = NORM(A,p) * NORM(INV(A),p).
@@ -16,7 +18,7 @@ def cond(a, p = 2):
 
        This replicates (essentially) np.linalg.cond
     """
-    
+
     if len(a) == 0:  # Handle null matrix.
         y = np.NaN
         return

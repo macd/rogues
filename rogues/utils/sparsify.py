@@ -1,10 +1,12 @@
 import numpy as np
 import numpy.random as nrnd
 
+
 class Higham(Exception):
     pass
 
-def sparsify(a, p = 0.25):
+
+def sparsify(a, p=0.25):
     """
     SPARSIFY  Randomly set matrix elements to zero.
           S = SPARSIFY(A, P) is A with elements randomly set to zero
@@ -26,11 +28,11 @@ def sparsify(a, p = 0.25):
     if (a == a.T).all():
         # Preserve symmetry
         d = np.choose(nrnd.rand(m) > p, (np.zeros(m), np.diag(a)))
-        a = np.triu(a, 1) * (nrnd.rand(m, n) > p)   
+        a = np.triu(a, 1) * (nrnd.rand(m, n) > p)
         a = a + a.T
         a = a + np.diag(d)
     else:
         # Unsymmetric case
-        a = np.choose(nrnd.rand(m,n) > p, ( np.zeros((m,n)), a) )               
+        a = np.choose(nrnd.rand(m, n) > p, (np.zeros((m, n)), a))
 
     return a

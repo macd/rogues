@@ -1,6 +1,7 @@
 import numpy as np
 
-def augment(a, alpha = 1.):
+
+def augment(a, alpha=1.):
     """
     AUGMENT  Augmented system matrix.
          AUGMENT(A, ALPHA) is the square matrix
@@ -32,12 +33,13 @@ def augment(a, alpha = 1.):
     except AttributeError:
         # Handle the special case a = scalar
         n = a
-        p = np.round(n/2)
+        p = np.round(n / 2)
         q = n - p
         a = np.random.randn(p, q)
         m = p
         n = q
 
-    c = np.vstack( (np.hstack((alpha * np.eye(m), a)),  np.hstack((a.T, np.zeros((n,n)))) ) )
+    c = np.vstack((np.hstack((alpha * np.eye(m), a)),  \
+                   np.hstack((a.T, np.zeros((n, n))))))
 
     return c

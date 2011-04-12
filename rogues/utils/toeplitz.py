@@ -1,9 +1,11 @@
 import numpy as np
 
+
 class Higham(Exception):
     pass
 
-def toeplitz(a, b = None):
+
+def toeplitz(a, b=None):
     """
     toeplitz(a) returns a toeplitz matrix given "a", the first row of the
     matrix.  This matrix is defined as:
@@ -26,14 +28,14 @@ def toeplitz(a, b = None):
     the first row to the right by one, but instead circularly shifting the
     last element of the row back into the first element, we shift in the
     successive elements of a as the element of b are shifted out.
-    
+
     See the wikipedia entry for more information and references (especially the
     following: http://ee.stanford.edu/~gray/toeplitz.pdf)
     """
 
     # Error checking...
     try:
-        m,  = a.shape
+        m, = a.shape
         if b != None:
             n, = b.shape
     except (ValueError, AttributeError):
@@ -46,14 +48,14 @@ def toeplitz(a, b = None):
         # If only one array specified and it is complex, make sure that the
         # generated toeplitz array is Hermitian
         b = np.conj(a.copy())
-            
+
     if a[0] != b[0]:
         print("Warning: a[0] != b[0]. First vector (toeplitz column) wins")
 
     t = b.copy()
     t[0] = a[0]
-    for i in xrange(1,m):
-        rot = np.r_[a[i::-1],  b[1:-i]]
+    for i in xrange(1, m):
+        rot = np.r_[a[i::-1], b[1:-i]]
         t = np.vstack((t, rot))
-    
+
     return t

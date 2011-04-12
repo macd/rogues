@@ -4,11 +4,13 @@ import numpy.linalg as nl
 status_file = None
 trace = False
 
+
 def print_status(msg):
     if trace and status_file != None:
         status_file.write(msg)
 
-def mdsmax(fun, x, stopit = None, savit = None, varargin = []):
+
+def mdsmax(fun, x, stopit=None, savit=None, varargin=[]):
     """
     MDSMAX  Multidirectional search method for direct search optimization.
         [x, fmax, nf] = MDSMAX(FUN, x0, STOPIT, SAVIT) attempts to
@@ -51,8 +53,8 @@ def mdsmax(fun, x, stopit = None, savit = None, varargin = []):
         Second edition, Society for Industrial and Applied Mathematics,
         Philadelphia, PA, 2002; sec. 20.5.
     [5] T.G. Kolda, R. M. Lewis, V. Torczon, Optimization by Direct Search: New
-        Perspectives on Some Classical and Modern Methods", SIAM Review, Vol. 45,
-        No. 3, pp. 385-482
+        Perspectives on Some Classical and Modern Methods", SIAM Review,
+        Vol. 45, No. 3, pp. 385-482
     """
     global status_file
     global trace
@@ -72,46 +74,46 @@ def mdsmax(fun, x, stopit = None, savit = None, varargin = []):
 
     # Set up convergence parameters etc.
     # Tolerance for cgce test based on relative size of simplex.
-    tol    = stopit[0]     
-    trace  = stopit[4]
+    tol = stopit[0]
+    trace = stopit[4]
 
     if savit != None:
         status_file = open(savit, 'w')
 
-    v  = np.hstack((np.zeros((n,1)), np.eye(n)))
+    v  = np.hstack((np.zeros((n, 1)), np.eye(n)))
     t  = v
-    f  = np.zeros(n+1)
+    f  = np.zeros(n + 1)
     ft = f
     v[:, 0] = x0
     f[0] = fun(x, varargin)
     fmax_old = f[0]
 
-    print_status('f(x0) = %9.4e\n' %  f[0])
+    print_status('f(x0) = %9.4e\n' % f[0])
 
     # Set up initial simplex.
     scale = max(nl.norm(x0, np.inf), 1)
     if stopit[3] == 0:
-        # Regular simplex - all edges have same length.
-        # Generated from construction given in reference [18, pp. 80-81] of [1].
-        alpha = scale / (n*np.sqrt(2)) * np.r_[ np.sqrt(n+1)-1+n,  np.sqrt(n+1)-1 ]
-        v[:,1:n+1] = np.outer(x0 + alpha[1]*np.ones(n), np.ones(n) )
+        # Regular simplex - all edges have same length
+        # Generated from construction given in reference [18, pp. 80-81] of [1]
+        alpha = scale / (n * np.sqrt(2)) * np.r_[np.sqrt(n + 1) - 1 + n, \
+                                                 np.sqrt(n + 1) - 1]
+        v[:, 1:n + 1] = np.outer(x0 + alpha[1] * np.ones(n), np.ones(n))
         for j  in range(1, n + 1):
-            v[j-1, j] = x0[j - 1] + alpha[0]
-            x    = v[:, j] 
+            v[j - 1, j] = x0[j - 1] + alpha[0]
+            x = v[:, j]
             f[j] = fun(x, varargin)
 
     else:
         # Right-angled simplex based on co-ordinate axes.
-        alpha = scale * np.ones(n+1)
+        alpha = scale * np.ones(n + 1)
         for j in range(1, n + 1):
             v[:, j] = x0 + alpha[j] * v[:, j]
-            x    = v[:,j]
+            x = v[:, j]
             f[j] = fun(x, varargin)
 
-
-    nf = n+1
-    size = 0             # Integer that keeps track of expansions/contractions.
-    flag_break = 0       # Flag which becomes true when ready to quit outer loop.
+    nf = n + 1
+    size = 0           # Integer that keeps track of expansions/contractions.
+    flag_break = 0     # Flag which becomes true when ready to quit outer loop.
 
     k = 0
     m = 0
@@ -121,19 +123,21 @@ def mdsmax(fun, x, stopit = None, savit = None, varargin = []):
 
         # Find a new best vertex  x  and function value  fmax = f(x).
         fmax = np.max(f)
-        j    = np.argmax(f)
+        j = np.argmax(f)
         # swap_columns 0, j
-        v[:, [0, j] ] = v[:, [j, 0]]
-        v0 = v[:,0]
+        v[:, [0, j]] = v[:, [j, 0]]
+        v0 = v[:, 0]
         if savit != None:
             x = v0
-            print_status(' x: %2.6e  fmax: %2.6e  nf: %d\n' % (x, fmax, nf) )
+            print_status(' x: %2.6e  fmax: %2.6e  nf: %d\n' % (x, fmax, nf))
 
         f[0], f[j] = f[j], f[0]
 
-        print_status('Iter. %2.0f,  inner = %2.0f,  size = %2.0f,  ' % (k, m, size))
+        print_status('Iter. %2.0f,  inner = %2.0f,  size = %2.0f,  ' % \
+                      (k, m, size))
         print_status('nf = %3.0f,  f = %9.4e  (%2.1f)\n' % (nf, fmax,   \
-                      100*(fmax-fmax_old)/(abs(fmax_old)+np.finfo(float).eps) ))
+                      100 * (fmax - fmax_old) / \
+                      (abs(fmax_old) + np.finfo(float).eps)))
 
         fmax_old = fmax
 
@@ -149,15 +153,15 @@ def mdsmax(fun, x, stopit = None, savit = None, varargin = []):
 
             # Stopping Test 2 - too many f-evals?
             if nf >= stopit[1]:
-                msg = 'Max number of function evaluations exceeded...quitting\n'
+                msg = 'Max number of function evaluations exceeded...quitting'
                 flag_break = 1
                 break
 
             # Stopping Test 3 - converged?   This is test (4.3) in [1].
             vt = np.outer(v0, np.ones(n))
             #size_simplex = nl.norm(v[:,1:n+1] - v0[:,np.ones(n)], 1) /  \
-            size_simplex = nl.norm(v[:,1:n+1] - vt, 1) /  \
-                           max(1, nl.norm(v0,1))
+            size_simplex = nl.norm(v[:, 1:n + 1] - vt, 1) /  \
+                           max(1, nl.norm(v0, 1))
             if size_simplex <= tol:
                 msg = 'Simplex size %9.4e <= %9.4e...quitting\n' % \
                                (size_simplex, tol)
@@ -171,7 +175,7 @@ def mdsmax(fun, x, stopit = None, savit = None, varargin = []):
 
             nf = nf + n
 
-            replaced = ( np.max(ft[1:n+1]) > fmax )
+            replaced = (np.max(ft[1:n + 1]) > fmax)
 
             if replaced:
                 for j in range(1, n + 1):   # ---Expansion step.
@@ -179,23 +183,23 @@ def mdsmax(fun, x, stopit = None, savit = None, varargin = []):
                     x = v[:, j]
                     f[j] = fun(x, varargin)
 
-                nf = nf + n;
+                nf = nf + n
                 # Accept expansion or rotation?
-                if np.max(ft[1:n+1]) > np.max(f[1:n+1]):
+                if np.max(ft[1:n + 1]) > np.max(f[1:n + 1]):
                     # Accept rotation.
-                    v[:, 1:n+1] = t[:, 1:n+1]
-                    f[1:n+1] = ft[1:n+1]
+                    v[:, 1:n + 1] = t[:, 1:n + 1]
+                    f[1:n + 1] = ft[1:n + 1]
                 else:
                     size += 1    # Accept expansion (f and V already set).
 
             else:
                 for j in range(1, n + 1):      # ---Contraction step.
-                    v[:,j] = (1 + theta) * v0 - theta * t[:,j]
-                    x = v[:, j] 
+                    v[:, j] = (1 + theta) * v0 - theta * t[:, j]
+                    x = v[:, j]
                     f[j] = fun(x, varargin)
 
                 nf = nf + n
-                replaced = ( np.max(f[1:n+1]) > fmax )
+                replaced = (np.max(f[1:n + 1]) > fmax)
                 # Accept contraction (f and V already set).
                 size -= 1
 
@@ -207,7 +211,6 @@ def mdsmax(fun, x, stopit = None, savit = None, varargin = []):
 
         if flag_break:
             break
-
 
     # Finished.
     print_status(msg)

@@ -1,6 +1,6 @@
 import numpy as np
 import pylab as plt
-import numpy.linalg as nl
+
 
 def cpltaxes(zz):
     """
@@ -14,7 +14,7 @@ def cpltaxes(zz):
     """
     # Collapse down to a vector
     z = zz.ravel()
-    
+
     # Set x and y axis ranges so both have the same length.
 
     xmin = min(z.real)
@@ -24,21 +24,21 @@ def cpltaxes(zz):
 
     # Fix for rare case of `trivial data'.
     if xmin == xmax:
-        xmin = xmin - 1/2.
-        xmax = xmax + 1/2.
-        
+        xmin = xmin - 1 / 2.
+        xmax = xmax + 1 / 2.
+
     if ymin == ymax:
-        ymin = ymin - 1/2.
-        ymax = ymax + 1/2.
+        ymin = ymin - 1 / 2.
+        ymax = ymax + 1 / 2.
 
     if xmax - xmin >= ymax - ymin:
-        ymid = (ymin +  ymax)/2.
-        ymin =  ymid - (xmax - xmin)/2.
-        ymax =  ymid + (xmax - xmin)/2.
+        ymid = (ymin + ymax) / 2.
+        ymin =  ymid - (xmax - xmin) / 2.
+        ymax =  ymid + (xmax - xmin) / 2.
     else:
-        xmid = (xmin + xmax)/2
-        xmin = xmid - (ymax-ymin)/2.
-        xmax = xmid + (ymax-ymin)/2.
+        xmid = (xmin + xmax) / 2
+        xmin = xmid - (ymax - ymin) / 2.
+        xmax = xmid + (ymax - ymin) / 2.
 
     plt.axis('equal')
 
@@ -53,9 +53,8 @@ def cpltaxes(zz):
 
     if x[0] == x[1]:
         x[1] = x[1] + 0.1
-        
+
     if x[2] == x[3]:
         x[3] = x[2] + 0.1
 
     return x
-    

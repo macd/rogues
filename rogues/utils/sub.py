@@ -1,6 +1,7 @@
 import numpy as np
 
-def sub(a, i, j = None):
+
+def sub(a, i, j=None):
     """
     SUB     Principal submatrix.
         sub(a,i,j) is a[i:j, i:j].
@@ -16,7 +17,7 @@ def sub(a, i, j = None):
             s = a[0:i, 0:i]
         else:
             n = np.min(a.shape)
-            s = a[n+i:n, n+i:n]
+            s = a[n + i:n, n + i:n]
 
     else:
         s = a[i:j, i:j]

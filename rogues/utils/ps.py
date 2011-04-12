@@ -2,10 +2,12 @@ import numpy as np
 import pylab as plt
 from rogues.utils import cpltaxes
 
+
 class Higham(Exception):
     pass
 
-def ps(a, m = None, tol = 1e-3, rl = 0, marksize = 0):
+
+def ps(a, m=None, tol=1e-3, rl=0, marksize=0):
     """
     PS     Dot plot of a pseudospectrum.
        ps(a, m, tol, rl) plots an approximation to a pseudospectrum
@@ -34,14 +36,13 @@ def ps(a, m = None, tol = 1e-3, rl = 0, marksize = 0):
           J. Levesley, and M. Marletta, eds., Springer-Verlag, Berlin,
           1999, pp. 217-250.
     """
-    
     if np.diff(a.shape)[0] != 0:
         raise Higham('Matrix must be square.')
-    
+
     n = max(a.shape)
 
     if m == None:
-        m = int(5 * max(1, np.around( 25 * np.exp(-0.047*n) )))
+        m = int(5 * max(1, np.around(25 * np.exp(-0.047 * n))))
 
     if m == 0:
         e, v = np.linalg.eig(a)
@@ -52,28 +53,28 @@ def ps(a, m = None, tol = 1e-3, rl = 0, marksize = 0):
         return
 
     # If we don't create x with dtype=np.complex128, then
-    # it defaults to float and the imaginary part of the eigenvalues 
-    # disappear (or we get an error, which is better) when we later 
+    # it defaults to float and the imaginary part of the eigenvalues
+    # disappear (or we get an error, which is better) when we later
     # assign into x.
-    x = np.empty(m*n, dtype = np.complex128)
-    
+    x = np.empty(m * n, dtype=np.complex128)
+
     for j in range(m):
         # Componentwise.
         if rl == -1:
-            # Uniform random numbers on [-1,1]. 
-            da = -np.ones(n) + 2*np.random.rand(n,n)   
+            # Uniform random numbers on [-1, 1].
+            da = -np.ones(n) + 2 * np.random.rand(n, n)
             da = tol * (a * da)
         else:
             if rl == 0:
                 # Complex absolute.
-                da = np.random.randn(n,n) + 1j*np.random.randn(n,n)
+                da = np.random.randn(n, n) + 1j * np.random.randn(n, n)
             else:
                 # Real absolute.
-                da = np.random.randn(n,n)
+                da = np.random.randn(n, n)
 
             da = (tol / np.linalg.norm(da)) * da
 
-        x[j*n : (j+1) * n], v = np.linalg.eig(a + da)
+        x[j * n:(j + 1) * n], v = np.linalg.eig(a + da)
 
     if marksize >= 0:
         ax = cpltaxes(x)
@@ -85,7 +86,7 @@ def ps(a, m = None, tol = 1e-3, rl = 0, marksize = 0):
             # Apparently the 'units' property is not supported in
             # matplotlib and the postion property returns values
             # that have been normalized between 0 and 1 and are
-            # a Bbox instance (a [2,2] array not a [4] array).  Not 
+            # a Bbox instance (a [2,2] array not a [4] array).  Not
             # clear how to proceed in picking the marker size for
             # the pseudo eigenvalues so we punt an put in a default
             marksize = 5
@@ -101,4 +102,3 @@ def ps(a, m = None, tol = 1e-3, rl = 0, marksize = 0):
         return y
 
     return None
-
