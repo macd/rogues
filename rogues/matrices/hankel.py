@@ -1,4 +1,5 @@
 import numpy as np
+import warnings
 
 def hankel(a, b=None):
     """
@@ -50,8 +51,7 @@ def hankel(a, b=None):
         b = np.zeros_like(a)
         n = m
     elif a[-1] != b[0]:
-        if warning:
-            print("Warning: a[-1] != b[0]. a[-1] is chosen")
+        warnings.warn("a[-1] != b[0]. a[-1] is chosen")
 
     k = np.r_[a, b[1:]]
     h = k[:n]
