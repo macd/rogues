@@ -1,10 +1,5 @@
 import numpy as np
 
-
-class Higham(Exception):
-    pass
-
-
 def gfpp(t, c=1.0):
     """
     GFPP   Matrix giving maximal growth factor for Gaussian elim. with pivoting
@@ -27,9 +22,7 @@ def gfpp(t, c=1.0):
         # t must be an array rather than an int
         n = m + 1
         if np.norm(t - np.triu(t), 1) | (np.diag(t) == 0.0).any():
-            raise Higham('First argument must be a nonsingular upper ' \
-                         'triangular matrix.')
-
+            raise ValueError('First argument must be a nonsingular upper triangular matrix.')
     except AttributeError:
         # Handle the special case T = scalar
         n = t

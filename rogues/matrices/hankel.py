@@ -1,11 +1,6 @@
 import numpy as np
 
-
-class Higham(Exception):
-    pass
-
-
-def hankel(a, b=None, warning=False):
+def hankel(a, b=None):
     """
     hankel(a) returns a toeplitz matrix given "a", the first row of the
     matrix.  This matrix is defined as:
@@ -25,15 +20,13 @@ def hankel(a, b=None, warning=False):
     first column and b is the last row.  If a[-1] != b[0], a[-1] is chosen
     but a warning message is printed.  For example
 
-    In [2]: from hankel import *
-    In [3]: a = arange(10)
-    In [4]: a
-    Out[4]: array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    In [5]: b = arange(10,20)
-    In [6]: h = hankel(a, b)
+    >>> import numpy as np
+    >>> from rogues import hankel
+    >>> a = np.arange(10)
+    >>> b = np.arange(10,20)
+    >>> h = hankel(a, b)
     Warning: a[-1] != b[0]. a[-1] is chosen
-    In [7]: h
-    Out[7]:
+    >>> h
     array([[ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9],
            [ 1,  2,  3,  4,  5,  6,  7,  8,  9, 11],
            [ 2,  3,  4,  5,  6,  7,  8,  9, 11, 12],
@@ -51,7 +44,7 @@ def hankel(a, b=None, warning=False):
         if b != None:
             n, = b.shape
     except (ValueError, AttributeError):
-        raise Higham("Input arrays must be one dimensional")
+        raise ValueError("Input arrays must be one dimensional")
 
     if b == None:
         b = np.zeros_like(a)

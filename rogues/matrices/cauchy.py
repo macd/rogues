@@ -1,10 +1,5 @@
 import numpy as np
 
-
-class Higham(Exception):
-    pass
-
-
 def cauchy(x, y=None):
     """
     cauchy  cauchy matrix.
@@ -38,7 +33,7 @@ def cauchy(x, y=None):
         y = x
 
     if not x.shape == y.shape:
-        raise Higham('Parameter vectors must be of same dimension.')
+        raise ValueError('Parameter vectors must be of same dimension.')
 
     c = np.outer(x, np.ones(n)) + np.outer(np.ones(n), y)
     c = 1 / c

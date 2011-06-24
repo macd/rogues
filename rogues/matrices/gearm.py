@@ -1,10 +1,5 @@
 import numpy as np
 
-
-class Higham(Exception):
-    pass
-
-
 def gearm(n, i=None, j=None):
     """
     GEARM   Gear matrix.
@@ -29,7 +24,7 @@ def gearm(n, i=None, j=None):
         j = -(n - 1)
 
     if not(abs(i) < n and abs(j) < n):
-        raise Higham('Invalid i and j parameters')
+        raise ValueError('Invalid i and j parameters')
 
     a = np.diag(np.ones(n - 1), -1) + np.diag(np.ones(n - 1), 1)
     a[0, np.abs(i)] = np.sign(i)
