@@ -24,10 +24,9 @@ def cauchy(x, y=None):
            Survey of Numerical Analysis, J. Todd, ed., McGraw-Hill, New York,
            pp. 279-313, 1962. (States the totally positive property on p. 295.)
     """
-    try:
-        n, = x.shape
-    except AttributeError:
-        n = x
+
+    if not hasattr(x, 'shape'):
+        x = np.arange(1, x)
 
     if y == None:
         y = x
@@ -35,6 +34,6 @@ def cauchy(x, y=None):
     if not x.shape == y.shape:
         raise ValueError('Parameter vectors must be of same dimension.')
 
+    n = x.shape[0]
     c = np.outer(x, np.ones(n)) + np.outer(np.ones(n), y)
-    c = 1 / c
-    return c
+    return 1. / c

@@ -30,6 +30,10 @@ def test_cauchy():
     b = rogues.hilb(10)
     npt.assert_array_equal(a, b)
 
+    # scalar argument
+    a = rogues.cauchy(10)
+    b = rogues.cauchy(np.arange(1, 10))
+    npt.assert_array_equal(a, b)
 
 def cheb(xx):
     """Helper function: generator for Chebyshev polynomials"""
