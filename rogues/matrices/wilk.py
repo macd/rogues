@@ -1,11 +1,6 @@
 import numpy as np
 from rogues.matrices import hilb
 
-
-class Higham(Exception):
-    pass
-
-
 def wilk(n):
     """
     wilk   Various specific matrices devised/discussed by Wilkinson.
@@ -26,10 +21,10 @@ def wilk(n):
     b = []
     if n == 3:
         # Wilkinson (1961) p.323.
-        a = [[1e-10, .9, -.4], \
-             [0, .9, -.4],     \
-             [0, 0, 1e-10]]
-        b = [0, 0, 1]
+        a = [ [1e-10,   .9,  -.4], \
+              [0,     .9,  -.4],   \
+              [0,     0,  1e-10]]
+        b = [   0,      0,    1]
 
     elif n == 4:
         # Wilkinson (1963) p.105.
@@ -56,6 +51,6 @@ def wilk(n):
         b = np.zeros(21)
 
     else:
-        raise Higham("Sorry, that value of N is not available.")
+        raise ValueError("Sorry, that value of N is not available.")
 
     return np.array(a), np.array(b)

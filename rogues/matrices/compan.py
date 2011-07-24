@@ -1,10 +1,5 @@
 import numpy as np
 
-
-class Higham(Exception):
-    pass
-
-
 def compan(p):
     """
     COMPAN  Companion matrix.
@@ -39,7 +34,7 @@ def compan(p):
             # ie compan shouldn't be defined for a non square matrix
             # so here we error out when that happens.
             #n = max(n,m)
-            raise Higham("Input matrix 'a' must be square with dimension > 1")
+            raise ValueError("Input matrix 'a' must be square with dimension > 1")
 
     except ValueError:
         n, = p.shape

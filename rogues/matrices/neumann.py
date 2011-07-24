@@ -1,11 +1,6 @@
 import numpy as np
 from rogues.utils import tridiag
 
-
-class Higham(Exception):
-    pass
-
-
 def neumann(n):
     """
     neumann  Singular matrix from the discrete Neumann problem (sparse).
@@ -24,8 +19,8 @@ def neumann(n):
         m, n = n.shape
     except AttributeError:
         m = int(np.sqrt(n))
-        if m ** 2 != n:
-            raise Higham('N must be a perfect square.')
+        if m**2 != n:
+            raise ValueError('N must be a perfect square.')
         n = m
 
     t = tridiag(m, -1, 2, -1).todense()
