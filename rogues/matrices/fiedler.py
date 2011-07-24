@@ -1,10 +1,5 @@
 import numpy as np
 
-
-class Higham(Exception):
-    pass
-
-
 def fiedler(c):
     """
     FIEDLER  Fiedler matrix - symmetric.
@@ -30,7 +25,7 @@ def fiedler(c):
 
     try:
         if len(c.shape) != 1:
-            raise Higham("Only 1-D vectors or scalers are valid input")
+            raise ValueError("Only 1-D vectors or scalers are valid input")
         n, = c.shape
 
     except AttributeError:

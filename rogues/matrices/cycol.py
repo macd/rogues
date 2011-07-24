@@ -1,10 +1,5 @@
 import numpy as np
 
-
-class Higham(Exception):
-    pass
-
-
 def cycol(mn, k=None):
     """
     cycol   matrix whose columns repeat cyclically.
@@ -27,12 +22,12 @@ def cycol(mn, k=None):
         k = max(round(n / 4.), 1)
     else:
         if k > n:
-            raise Higham("k cannot be greater than the max matrix dimension")
+            raise ValueError("k cannot be greater than the max matrix dimension")
 
     a = np.random.randn(m, k)
 
     for i in range(1, int(np.ceil(n / k))):
-        a = np.r_['1', a, a[:, 0:k]]     # this is the same as np.hstack(a,...)
+        a = np.r_['1', a, a[:, 0:k]]        # this is the same as np.hstack(a,...)
 
     # Truncate matrix down to desired size if we concat'ed too much
     a = a[:, 0:n]
