@@ -1,5 +1,4 @@
 import numpy as np
-import pylab as plt
 
 
 def cpltaxes(zz):
@@ -40,6 +39,7 @@ def cpltaxes(zz):
         xmin = xmid - (ymax - ymin) / 2.
         xmax = xmid + (ymax - ymin) / 2.
 
+    import pylab as plt
     plt.axis('equal')
 
     # Scale ranges by 1+2*alpha to give extra space around edges of plot.

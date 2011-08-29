@@ -1,5 +1,4 @@
 import numpy as np
-import pylab as plt
 from rogues.utils import cpltaxes
 
 
@@ -47,6 +46,7 @@ def ps(a, m=None, tol=1e-3, rl=0, marksize=0):
     if m == 0:
         e, v = np.linalg.eig(a)
         ax = cpltaxes(e)
+        import pylab as plt
         plt.plot(e.real, e.imag, 'rx')
         plt.axis(ax)
         plt.axis('equal')
