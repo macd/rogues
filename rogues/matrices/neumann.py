@@ -11,6 +11,20 @@ def neumann(n):
          the dimension n should be a perfect square, or else a 2-vector,
          in which case the dimension of the matrix is n[1]*n[2].
 
+         a, t = neumann(n) where a is the singular matrix of a*u = b
+         which is the finite difference analog of the Neumann problem:
+
+                                 del(u) = -f   in  R
+                                 du/dn  =  g   on dR
+
+         The matrix t corresponds to a specific ordering on a regular mesh
+         of the finite differences where 
+
+                                a = t @ I + I @ t
+
+         where I is the identity matrix and @ denotes the Kronecker product.
+         The matrix t is tri-diagonal whose rows sum to zero.
+
          Reference:
          R.J. Plemmons, Regular splittings and the discrete Neumann
          problem, Numer. Math., 25 (1976), pp. 153-161.
