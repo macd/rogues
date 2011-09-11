@@ -1,5 +1,4 @@
 import numpy as np
-import pylab as plt
 from rogues.utils import cpltaxes
 
 
@@ -36,6 +35,12 @@ def ps(a, m=None, tol=1e-3, rl=0, marksize=0):
           J. Levesley, and M. Marletta, eds., Springer-Verlag, Berlin,
           1999, pp. 217-250.
     """
+
+    try:
+        plt = __import__('pylab')
+    except ImportError:
+        raise Higham('Error importing pylab')
+
     if np.diff(a.shape)[0] != 0:
         raise Higham('Matrix must be square.')
 
@@ -46,10 +51,11 @@ def ps(a, m=None, tol=1e-3, rl=0, marksize=0):
 
     if m == 0:
         e, v = np.linalg.eig(a)
-        ax = cpltaxes(e)
+        ax = cpltaxes(e, plt)
         plt.plot(e.real, e.imag, 'rx')
         plt.axis(ax)
         plt.axis('equal')
+        plt.show() # dbm
         return
 
     # If we don't create x with dtype=np.complex128, then
@@ -77,7 +83,7 @@ def ps(a, m=None, tol=1e-3, rl=0, marksize=0):
         x[j * n:(j + 1) * n], v = np.linalg.eig(a + da)
 
     if marksize >= 0:
-        ax = cpltaxes(x)
+        ax = cpltaxes(x, plt)
         h = plt.plot(x.real, x.imag, '.')
         plt.axis(ax)
         plt.axis('equal')
@@ -96,6 +102,7 @@ def ps(a, m=None, tol=1e-3, rl=0, marksize=0):
         plt.plot(e.real, e.imag, 'rx')
         plt.setp(h, 'markersize', marksize)
         plt.hold(False)
+        plt.show() # dbm
 
     else:
         y = x

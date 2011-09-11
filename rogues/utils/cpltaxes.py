@@ -1,8 +1,7 @@
 import numpy as np
-import pylab as plt
 
 
-def cpltaxes(zz):
+def cpltaxes(zz, plt):
     """
     CPLTAXES   Determine suitable AXIS for plot of complex vector.
            X = CPLTAXES(Z), where Z is a complex vector,
@@ -11,6 +10,9 @@ def cpltaxes(zz):
            of space around the edge of the plot.
 
            Called by FV, GERSH, PS and PSCONT.
+
+           NOTE: You must pass in the module instance of pylab in the
+                 'plt' argument.
     """
     # Collapse down to a vector
     z = zz.ravel()
