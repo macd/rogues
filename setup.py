@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
 setup(name             = 'rogues',
-      version          = '0.2.1',
+      version          = '0.2.2',
       test_suite       = 'nose.collector',
       packages         = find_packages(),
-      install_requires = ['numpy', 'scipy', 'matplotlib'],
+      install_requires = ['numpy', 'scipy'],
       author           = 'Don MacMillen',
       author_email     = 'don@macmillen.net',
       url              = 'https://github.com/macd/rogues',
