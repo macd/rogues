@@ -55,7 +55,7 @@ def hankel(a, b=None):
 
     k = np.r_[a, b[1:]]
     h = k[:n]
-    for i in xrange(1, m):
+    for i in range(1, m):
         h = np.vstack((h, k[i:i + n]))
 
     return h

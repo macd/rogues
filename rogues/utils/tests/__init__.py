@@ -1,2 +1,2 @@
-from test_mds import *
-from test_utils import *
+from rogues.utils.tests.test_mds import *
+from rogues.utils.tests.test_utils import *

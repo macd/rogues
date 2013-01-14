@@ -1,1 +1,1 @@
-from test_rogues import *
+from rogues.matrices.tests.test_rogues import *

@@ -212,7 +212,7 @@ def test_toeplitz():
     succession of matrix sizes
     """
     dets = []
-    for i in xrange(3, 30):
+    for i in range(3, 30):
         a = np.arange(1, i)
         b = rogues.toeplitz(a)
         dets.append(nl.det(b))
@@ -314,7 +314,7 @@ def test_tridiag_c():
     tw = d + 2 * np.sqrt(c * e) * tw
     tw.sort()
     res = nl.norm(w - tw)
-    npt.assert_almost_equal(res, 0.0, 14)
+    npt.assert_almost_equal(res, 0.0, 12)
 
 
 def test_vand():
