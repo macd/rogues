@@ -4,3 +4,5 @@ setup.cfg
 *egg*
 build/*
 dist/*
+distribute*.gz
+distribute*.egg

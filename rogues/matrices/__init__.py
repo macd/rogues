@@ -49,7 +49,6 @@ from rogues.matrices.randsvd import *
 from rogues.matrices.redheff import *
 from rogues.matrices.riemann import *
 from rogues.matrices.smoke import *
-from rogues.matrices.tests import *
 from rogues.matrices.triw import *
 from rogues.matrices.wathen import *
 from rogues.matrices.wilk import *

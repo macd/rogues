@@ -142,7 +142,7 @@ def test_mgs():
     a = np.random.randn(10, 10)
     q, r = rogues.mgs(a)
     b = np.matrix(q) * np.matrix(q.T)
-    npt.assert_array_almost_equal(b, np.eye(10), 14)
+    npt.assert_array_almost_equal(b, np.eye(10), 12)
 
 
 def test_repmat():
