@@ -1,12 +1,12 @@
-The "rogues" module is a reimplmentation of Nick Higham's test matrices into
-Python, Numpy, and Scipy.  They were generally ported by using the
-iPython shell.  They were developed from Version 3 (1995) of the test
-matrix package from code downloaded from Higham's web site.  Also,
-the earlier TOMS 694 version was used as reference in some cases.
-That code was download from netlib.  Both of these packages were
-accessed in February of 2009.
+The "rogues" module is a reimplmentation of Prof. N. Higham's test
+matrices into Python, Numpy, and Scipy.  They were generally ported by
+using the iPython shell.  They were developed from Version 3 (1995) of
+the test matrix package from code downloaded from Prof. Higham's web
+site.  Also, the earlier TOMS 694 version was used as reference in
+some cases.  That code was download from netlib.  Both of these
+packages were accessed in February of 2009.
 
-Also included are a small number of routines from Nick Higham's matrixcomp
+Also included are a small number of routines from Prof. Higham's matrixcomp
 library as well as several required functions that had no implementations.
 
 Some of the issues in porting to numpy from m*lab
