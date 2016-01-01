@@ -27,7 +27,9 @@ from rogues.utils.cond import *
 from rogues.utils.condeig import *
 from rogues.utils.cpltaxes import *
 from rogues.utils.dual import *
+from rogues.utils.fv import *
 from rogues.utils.ge import *
+from rogues.utils.gersh import *
 # duplicate, don't use this one
 #from rogues.utils.hankel import *
 from rogues.utils.house import *
@@ -35,6 +37,7 @@ from rogues.utils.mdsmax import *
 from rogues.utils.mgs import *
 from rogues.utils.pow2 import *
 from rogues.utils.ps import *
+from rogues.utils.pscont import *
 from rogues.utils.repmat import *
 from rogues.utils.rq import *
 from rogues.utils.skewpart import *
