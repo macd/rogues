@@ -3,7 +3,7 @@ The "utils" module is a reimplmentation of a few of Nick Higham's "Matrix
 Computation Toolbox" [1], into Python, Numpy, and Scipy.  They were
 generally ported using the iPython shell and probably work best there.
 They were developed from version 1.2 (released on 5-Sep-2002 and downloaded
-17 Feb 2009.
+17 Feb 2009.)
 
 Also included in this package some are the generic matrix manipulation
 functions that were inclued in Version 3, (1995 downloaded Feb 2009)
@@ -28,7 +28,8 @@ from rogues.utils.condeig import *
 from rogues.utils.cpltaxes import *
 from rogues.utils.dual import *
 from rogues.utils.ge import *
-from rogues.utils.hankel import *
+# duplicate, don't use this one
+#from rogues.utils.hankel import *
 from rogues.utils.house import *
 from rogues.utils.mdsmax import *
 from rogues.utils.mgs import *

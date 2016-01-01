@@ -39,11 +39,14 @@ def hankel(a, b=None):
            [ 2,  3,  4,  5,  6,  7,  8,  9, 11, 12],
            [ 3,  4,  5,  6,  7,  8,  9, 11, 12, 13],
            [ 4,  5,  6,  7,  8,  9, 11, 12, 13, 14],
+
            [ 5,  6,  7,  8,  9, 11, 12, 13, 14, 15],
            [ 6,  7,  8,  9, 11, 12, 13, 14, 15, 16],
            [ 7,  8,  9, 11, 12, 13, 14, 15, 16, 17],
            [ 8,  9, 11, 12, 13, 14, 15, 16, 17, 18],
            [ 9, 11, 12, 13, 14, 15, 16, 17, 18, 19]])
+
+    NOTE: This looks like a duplicate from rogues/matrics/hankel.py
     """
 
     # Error checking...
@@ -60,7 +63,6 @@ def hankel(a, b=None):
     elif a[-1] != b[0]:
         print("Warning: a[-1] != b[0]. a[-1] is chosen")
 
-    #k = np.r_[a, b[1:]]
     k = np.hstack((a, b[1:]))
     h = k[:n]
     for i in range(1, m):

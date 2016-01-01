@@ -6,7 +6,7 @@ if sys.version_info.major < 3:
 from setuptools import setup, find_packages
 
 setup(name             = 'rogues',
-      version          = '0.3.1',
+      version          = '0.4.0',
       test_suite       = 'nose.collector',
       packages         = find_packages(),
       install_requires = ['numpy', 'scipy'],

@@ -90,26 +90,26 @@ def test_ge():
     b = np.matrix(l) * np.matrix(u)
     npt.assert_array_almost_equal(a, b, 12)
 
+# tested in rogues/matrices/tests
+# def test_hankel():
+#     """
+#     Simple test of hankel matrix.
+#     """
+#     a = np.arange(10)
+#     b = np.arange(10, 20)
+#     h = rogues.hankel(a, b)
+#     g = np.array([[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+#                   [1, 2, 3, 4, 5, 6, 7, 8, 9, 11],
+#                   [2, 3, 4, 5, 6, 7, 8, 9, 11, 12],
+#                   [3, 4, 5, 6, 7, 8, 9, 11, 12, 13],
+#                   [4, 5, 6, 7, 8, 9, 11, 12, 13, 14],
+#                   [5, 6, 7, 8, 9, 11, 12, 13, 14, 15],
+#                   [6, 7, 8, 9, 11, 12, 13, 14, 15, 16],
+#                   [7, 8, 9, 11, 12, 13, 14, 15, 16, 17],
+#                   [8, 9, 11, 12, 13, 14, 15, 16, 17, 18],
+#                   [9, 11, 12, 13, 14, 15, 16, 17, 18, 19]])
 
-def test_hankel():
-    """
-    Simple test of hankel matrix.
-    """
-    a = np.arange(10)
-    b = np.arange(10, 20)
-    h = rogues.hankel(a, b)
-    g = np.array([[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-                  [1, 2, 3, 4, 5, 6, 7, 8, 9, 11],
-                  [2, 3, 4, 5, 6, 7, 8, 9, 11, 12],
-                  [3, 4, 5, 6, 7, 8, 9, 11, 12, 13],
-                  [4, 5, 6, 7, 8, 9, 11, 12, 13, 14],
-                  [5, 6, 7, 8, 9, 11, 12, 13, 14, 15],
-                  [6, 7, 8, 9, 11, 12, 13, 14, 15, 16],
-                  [7, 8, 9, 11, 12, 13, 14, 15, 16, 17],
-                  [8, 9, 11, 12, 13, 14, 15, 16, 17, 18],
-                  [9, 11, 12, 13, 14, 15, 16, 17, 18, 19]])
-
-    npt.assert_array_equal(h, g)
+#     npt.assert_array_equal(h, g)
 
 
 def test_house():
@@ -150,7 +150,7 @@ def test_repmat():
     Simple test of repmat. (repeated matrix)
     """
     a = np.array([2, 3, 4])
-    b = rogues.repmat(a, (3, 4))
+    b = rogues.repmat(a, 3, 4)
     c = np.array([[2, 3, 4, 2, 3, 4, 2, 3, 4, 2, 3, 4],
                   [2, 3, 4, 2, 3, 4, 2, 3, 4, 2, 3, 4],
                   [2, 3, 4, 2, 3, 4, 2, 3, 4, 2, 3, 4]])
