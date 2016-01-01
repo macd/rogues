@@ -18,7 +18,7 @@ def dual(x, p=None):
         Called by PNORM.
     """
 
-    if p == None:
+    if p is None:
         if len(x) == 1:
             y = 1 / (1 - 1 / x)
             return

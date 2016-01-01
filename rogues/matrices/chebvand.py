@@ -17,7 +17,7 @@ def chebvand(m, p=None):
            Vandermonde-like systems, SIAM J. Matrix Anal. Appl., 11 (1990),
            pp. 23-41.
     """
-    if p == None:
+    if p is None:
         nargin = 1
         p = m
     else:

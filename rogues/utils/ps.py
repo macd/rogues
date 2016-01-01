@@ -46,7 +46,7 @@ def ps(a, m=None, tol=1e-3, rl=0, marksize=0):
 
     n = max(a.shape)
 
-    if m == None:
+    if m is None:
         m = int(5 * max(1, np.around(25 * np.exp(-0.047 * n))))
 
     if m == 0:

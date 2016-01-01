@@ -36,12 +36,12 @@ def toeplitz(a, b=None):
     # Error checking...
     try:
         m, = a.shape
-        if b != None:
+        if b is not None:
             n, = b.shape
     except (ValueError, AttributeError):
         raise Higham("Input arrays must be one dimensional")
 
-    if b != None:
+    if b is not None:
         if m != n:
             raise Higham("Input arrays must be have the same dimension")
     else:
@@ -55,7 +55,8 @@ def toeplitz(a, b=None):
     t = b.copy()
     t[0] = a[0]
     for i in range(1, m):
-        rot = np.r_[a[i::-1], b[1:-i]]
+        #rot = np.r_[a[i::-1], b[1:-i]]
+        rot = np.hstack((a[i::-1], b[1:-i]))
         t = np.vstack((t, rot))
 
     return t

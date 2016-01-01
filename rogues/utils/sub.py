@@ -12,7 +12,7 @@ def sub(a, i, j=None):
     # editorial comment: this function seems unnecessary... it strikes
     # me that you would always want the bare code rather than the function
     # call because it is self evident what it does
-    if j == None:
+    if j is None:
         if i >= 0:
             s = a[0:i, 0:i]
         else:

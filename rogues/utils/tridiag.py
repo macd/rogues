@@ -44,7 +44,7 @@ def tridiag(n, x=None, y=None, z=None):
         if n < 2:
             raise Higham("n must be 2 or greater")
 
-        if x == None and y == None and z == None:
+        if x is None and y is None and z is None:
             x = -1
             y =  2
             z = -1

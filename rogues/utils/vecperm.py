@@ -17,7 +17,7 @@ def vecperm(m, n=None):
            the vec operator and Kronecker products: A review Linear and
            Multilinear Algebra, 9 (1981), pp. 271-288.
     """
-    if n == None:
+    if n is None:
         n = m
 
     p = np.zeros((m * n, m * n))

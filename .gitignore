@@ -4,5 +4,6 @@ setup.cfg
 *egg*
 build/*
 dist/*
+__pycache__/*
 distribute*.gz
 distribute*.egg

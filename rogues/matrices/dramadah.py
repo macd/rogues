@@ -16,7 +16,7 @@ def dramadah(n, k=1):
           the inverses of both types have integer entries.
 
           Another interesting (0,1) matrix:
-          K = 3: A has maximal determinant among (0,1) lower Hessenberg
+          k = 3: A has maximal determinant among (0,1) lower Hessenberg
           matrices: det(A) = the n'th Fibonacci number.  A is Toeplitz.
           The eigenvalues have an interesting distribution in the complex
           plane.
@@ -55,7 +55,6 @@ def dramadah(n, k=1):
         # Lower Hessenberg.
         c = np.ones(n)
         c[1::2] = 0
-
-        a = rogues.toeplitz(c, np.r_['1', np.array([1, 1]), np.zeros(n - 2)])
+        a = rogues.toeplitz(c, np.hstack((np.array([1, 1]), np.zeros(n - 2))))
 
     return a

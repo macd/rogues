@@ -51,13 +51,13 @@ def randsvd(n, kappa=None, mode=3, kl=None, ku=None):
         m = n
         p = n
 
-    if kappa == None:
+    if kappa is None:
         kappa = np.sqrt(1 / np.finfo(float).eps)
 
-    if kl == None:
+    if kl is None:
         kl = n - 1          # Full matrix.
 
-    if ku == None:
+    if ku is None:
         ku = kl             # Same upper and lower bandwidths.
 
     if np.abs(kappa) < 1:

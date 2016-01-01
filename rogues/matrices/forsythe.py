@@ -11,7 +11,7 @@ def forsythe(n, alpha=None, lambduh=0):
                   det(a-t*eye) = (lambda-t)^n - (-1)^n alpha.
           alpha defaults to sqrt(eps) and lambduh to 0.
     """
-    if alpha == None:
+    if alpha is None:
         alpha = np.sqrt(np.finfo(float).eps)
 
     a = jordbloc(n, lambduh)

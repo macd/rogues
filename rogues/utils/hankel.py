@@ -49,18 +49,19 @@ def hankel(a, b=None):
     # Error checking...
     try:
         m, = a.shape
-        if b != None:
+        if b is not None:
             n, = b.shape
     except (ValueError, AttributeError):
         raise Higham("Input arrays must be one dimensional")
 
-    if b == None:
+    if b is None:
         b = np.zeros_like(a)
         n = m
     elif a[-1] != b[0]:
         print("Warning: a[-1] != b[0]. a[-1] is chosen")
 
-    k = np.r_[a, b[1:]]
+    #k = np.r_[a, b[1:]]
+    k = np.hstack((a, b[1:]))
     h = k[:n]
     for i in range(1, m):
         h = np.vstack((h, k[i:i + n]))

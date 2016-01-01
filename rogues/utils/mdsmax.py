@@ -6,7 +6,7 @@ trace = False
 
 
 def print_status(msg):
-    if trace and status_file != None:
+    if trace and status_file is not None:
         status_file.write(msg)
 
 
@@ -61,7 +61,7 @@ def mdsmax(fun, x, stopit=None, savit=None, varargin=[]):
 
     # Stopping with 1e-3 actually leads to wrong results..
     #
-    if stopit == None:
+    if stopit is None:
         stopit = (1e-5, np.inf, np.inf, 0, 1)
 
     x0 = x
@@ -77,7 +77,7 @@ def mdsmax(fun, x, stopit=None, savit=None, varargin=[]):
     tol = stopit[0]
     trace = stopit[4]
 
-    if savit != None:
+    if savit is not None:
         status_file = open(savit, 'w')
 
     v  = np.hstack((np.zeros((n, 1)), np.eye(n)))
@@ -95,8 +95,8 @@ def mdsmax(fun, x, stopit=None, savit=None, varargin=[]):
     if stopit[3] == 0:
         # Regular simplex - all edges have same length
         # Generated from construction given in reference [18, pp. 80-81] of [1]
-        alpha = scale / (n * np.sqrt(2)) * np.r_[np.sqrt(n + 1) - 1 + n, \
-                                                 np.sqrt(n + 1) - 1]
+        alpha = scale / (n * np.sqrt(2)) * np.hstack((np.sqrt(n + 1) - 1 + n, 
+                                                     np.sqrt(n + 1) - 1))
         v[:, 1:n + 1] = np.outer(x0 + alpha[1] * np.ones(n), np.ones(n))
         for j  in range(1, n + 1):
             v[j - 1, j] = x0[j - 1] + alpha[0]
@@ -127,7 +127,7 @@ def mdsmax(fun, x, stopit=None, savit=None, varargin=[]):
         # swap_columns 0, j
         v[:, [0, j]] = v[:, [j, 0]]
         v0 = v[:, 0]
-        if savit != None:
+        if savit is not None:
             x = v0
             print_status(' x: %2.6e  fmax: %2.6e  nf: %d\n' % (x, fmax, nf))
 

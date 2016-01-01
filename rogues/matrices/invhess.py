@@ -11,7 +11,7 @@ def invhess(x, y=None):
          invhess(x, y), where x is an n-vector and y an n-1 vector,
          is the matrix whose lower triangle agrees with that of
          np.outer(np.ones(n), x) and whose strict upper triangle agrees with
-         that of np.outer(np.r_[1, y], np.ones(n))
+         that of np.outer(np.hstack((1, y)), np.ones(n))
          The matrix is nonsingular if x[1] != 0 and x[i+1] != y[i]
          for all i, and its inverse is an upper hessenberg matrix.
          If y is omitted it defaults to -x[0:n-2]

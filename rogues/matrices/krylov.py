@@ -21,10 +21,10 @@ def krylov(a, x=None, j=None):
         n = a
         a = nrnd.randn(n, n)
 
-    if j == None:
+    if j is None:
         j = n
 
-    if x == None:
+    if x is None:
         x = np.ones(n)
 
     b = np.ones((n, j))

@@ -19,7 +19,7 @@ def gearm(n, i=None, j=None):
         C.W. Gear, A simple set of test matrices for eigenvalue programs,
         Math. Comp., 23 (1969), pp. 119-125.
     """
-    if i == None:
+    if i is None:
         i =  n - 1
         j = -(n - 1)
 

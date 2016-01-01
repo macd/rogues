@@ -18,7 +18,7 @@ def cycol(mn, k=None):
         m = mn
         n = mn
 
-    if k == None:
+    if k is None:
         k = max(round(n / 4.), 1)
     else:
         if k > n:
@@ -27,7 +27,7 @@ def cycol(mn, k=None):
     a = np.random.randn(m, k)
 
     for i in range(1, int(np.ceil(n / k))):
-        a = np.r_['1', a, a[:, 0:k]]        # this is the same as np.hstack(a,...)
+        a = np.hstack((a, a[:, 0:k]))
 
     # Truncate matrix down to desired size if we concat'ed too much
     a = a[:, 0:n]

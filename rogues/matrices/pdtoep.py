@@ -21,13 +21,13 @@ def pdtoep(n, m=None, w=None, theta=None):
          a symmetric positive definite Toeplitz matrix, SIAM J. Sci. Stat.
          Comput., 7 (1986), pp. 123-131.
     """
-    if m == None:
+    if m is None:
         m = n
 
-    if w == None:
+    if w is None:
         w = np.random.rand(m)
 
-    if theta == None:
+    if theta is None:
         theta = np.random.rand(m)
 
     try:

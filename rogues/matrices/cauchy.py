@@ -28,7 +28,7 @@ def cauchy(x, y=None):
     if not hasattr(x, 'shape'):
         x = np.arange(1, x)
 
-    if y == None:
+    if y is None:
         y = x
 
     if not x.shape == y.shape:

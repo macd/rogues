@@ -7,7 +7,7 @@ def pow2(x, y=None):
     are supplied, return    x[i] * (2 ** y[i])
     Note that no error checking is done in this example.
     """
-    if y == None:
+    if y is None:
         z = (2. * np.ones(len(x))) ** x
     else:
         z = x * ((2. * np.ones(len(y))) ** y)
