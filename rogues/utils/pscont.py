@@ -5,8 +5,10 @@ import matplotlib.pylab as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 
+
 class Higham(Exception):
     pass
+
 
 def pscont(a, k=0, npts=None, ax=None, levels=None):
     """
@@ -48,16 +50,16 @@ def pscont(a, k=0, npts=None, ax=None, levels=None):
          `spectral portraits' by Godunov, Kostin, and colleagues.
          References: see PS.
     """
-    
+
     if np.diff(a.shape)[0] != 0:
         raise Higham('Matrix must be square.')
-    
+
     n = np.max(a.shape)
     is_a_real = not (a.imag).any()
 
     if levels is None:
         levels = np.arange(-10, 0)
-        
+
     e, v = np.linalg.eig(a)
 
     if ax is None:
@@ -66,11 +68,11 @@ def pscont(a, k=0, npts=None, ax=None, levels=None):
             ax[2] = -ax[3]
 
     if npts is None:
-        npts = int(3*np.round(np.minimum(np.maximum(5, np.sqrt(20**2 * 10**3 / n**3) ), 30)))
+        npts = int(3*np.round(min(max(5, np.sqrt(20**2 * 10**3 / n**3)), 30)))
 
     nptsx = npts
     nptsy = npts
-    #ysymmetry = is_a_real and (ax[2] == -ax[3])
+    # ysymmetry = is_a_real and (ax[2] == -ax[3])
     ysymmetry = False  # Hack... to be fixed
 
     x = np.linspace(ax[0], ax[1], npts)
@@ -83,7 +85,7 @@ def pscont(a, k=0, npts=None, ax=None, levels=None):
     xx, yy = np.meshgrid(x, y)
     z = xx + 1j * yy
     eye_n = np.eye(n)
-    smin  = np.zeros((nptsy, nptsx))
+    smin = np.zeros((nptsy, nptsx))
 
     for j in range(nptsx):
         for i in range(nptsy):
@@ -92,7 +94,7 @@ def pscont(a, k=0, npts=None, ax=None, levels=None):
 
     z = np.log10(smin + np.finfo(float).eps)
     if ysymmetry:
-        z = np.vstack((z, z[nptsy - np.remainder(npts,2)::-1, :]))
+        z = np.vstack((z, z[nptsy - np.remainder(npts, 2)::-1, :]))
         y = y1
 
     if k == 0 or k == 1:
@@ -102,8 +104,8 @@ def pscont(a, k=0, npts=None, ax=None, levels=None):
         fig = plt.figure()
         plt.hold(True)
         ax = fig.gca(projection='3d')
-        surf = ax.plot_surface(x, y, z, rstride=1, cstride=1, 
-                               cmap=cm.coolwarm, linewidth=.2, 
+        surf = ax.plot_surface(x, y, z, rstride=1, cstride=1,
+                               cmap=cm.coolwarm, linewidth=.2,
                                antialiased=True)
         plt.hold(True)
 
@@ -116,9 +118,9 @@ def pscont(a, k=0, npts=None, ax=None, levels=None):
 
     if k != 2 and k != 3:
         if k == 0 or k == 1:
-            s = 'w';   # White.
+            s = 'w'   # White
         else:
-            s = 'k';   # Black.
+            s = 'k'   # Black
         plt.plot(e.real, e.imag, ''.join((s, 'x')))
 
     plt.axis('equal')

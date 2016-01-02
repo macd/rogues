@@ -2,8 +2,10 @@ import numpy as np
 import matplotlib.pylab as plt
 from rogues.utils import cpltaxes
 
+
 class Higham(Exception):
     pass
+
 
 def gersh(A, plot=True):
     ''''
@@ -21,10 +23,10 @@ def gersh(A, plot=True):
 
     n = len(A)
     m = 40
-    G = np.zeros((m,n), dtype=np.complex128)
+    G = np.zeros((m, n), dtype=np.complex128)
 
     d = np.diag(A)
-    r = sum(np.abs(A - np.diag(d) ).T ).T
+    r = sum(np.abs(A - np.diag(d)).T).T
     e, _ = np.linalg.eig(A)
 
     radvec = np.exp(1j * np.linspace(0, 2 * np.pi, m))

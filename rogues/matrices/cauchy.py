@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def cauchy(x, y=None):
     """
     cauchy  cauchy matrix.

@@ -15,7 +15,7 @@ of Test Matrix package [2]
            (Version 3.0) , NA Report 276, September 1995.
            http://www.maths.manchester.ac.uk/~higham/papers/misc.php "
      [3] "N.J. Higham, Algorithm 694: A collection of test matrices
-           in MATLAB, ACM Trans. Math. Soft., 17(3):289--305, Sept. 1991. 
+           in MATLAB, ACM Trans. Math. Soft., 17(3):289--305, Sept. 1991.
 
 Don MacMillen 15 May 2009
 """
@@ -31,7 +31,7 @@ from rogues.utils.fv import *
 from rogues.utils.ge import *
 from rogues.utils.gersh import *
 # duplicate, don't use this one
-#from rogues.utils.hankel import *
+# from rogues.utils.hankel import *
 from rogues.utils.house import *
 from rogues.utils.mdsmax import *
 from rogues.utils.mgs import *

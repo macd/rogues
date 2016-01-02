@@ -38,8 +38,8 @@ def chebspec(n, k=0):
     d[n] = 2
 
     # np.eye(n + 1) in next expression avoids div by zero.
-    c = np.outer(d, (one / d)) / (np.outer(x, one) \
-                                 - np.outer(one, x) + np.eye(n + 1))
+    c = np.outer(d, (one / d)) / (np.outer(x, one) -
+                                  np.outer(one, x) + np.eye(n + 1))
 
     #  Now fix diagonal and signs.
     c[0, 0] = (2 * n ** 2 + 1) / 6.0

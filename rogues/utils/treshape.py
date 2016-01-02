@@ -29,7 +29,7 @@ def treshape(x, unit=0, row_wise=False):
         m = p * q
         n = int(np.around((-1 + np.sqrt(1 + 8 * m)) / 2.))
         if n * (n + 1) / 2 != m:
-            raise Higham('Matrix must have a "triangular" ' \
+            raise Higham('Matrix must have a "triangular" '
                          'number of elements.')
 
         if unit == 1:

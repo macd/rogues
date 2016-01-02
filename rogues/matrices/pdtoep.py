@@ -37,7 +37,7 @@ def pdtoep(n, m=None, w=None, theta=None):
         raise Higham('Arguments w and theta must be vectors of length M.')
 
     t = np.zeros(n)
-    e = 2 * np.pi * (np.outer(np.arange(1, n + 1), np.ones(n)) - \
+    e = 2 * np.pi * (np.outer(np.arange(1, n + 1), np.ones(n)) -
                      np.ones(n) * np.arange(1, n + 1))
 
     for i in range(m):

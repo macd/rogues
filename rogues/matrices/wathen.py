@@ -37,12 +37,12 @@ def wathen(nx, ny, k=0):
 
     ea = np.hstack((e1, e2))
     eb = np.hstack((e2.T, e1))
-    e  = np.vstack((ea, eb)) / 45.
-    n  = 3 * nx * ny + 2 * nx + 2 * ny + 1
-    a  = sparse.lil_matrix((n, n))
+    e = np.vstack((ea, eb)) / 45.
+    n = 3 * nx * ny + 2 * nx + 2 * ny + 1
+    a = sparse.lil_matrix((n, n))
 
     rho = np.random.randint(1, 100, (nx, ny))
-    nn  = np.zeros(8)
+    nn = np.zeros(8)
 
     for j in range(ny):
         for i in range(nx):

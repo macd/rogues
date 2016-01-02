@@ -15,7 +15,7 @@ def wilkinson(n):
         raise Higham("n must be odd")
 
     m = int(n / 2)
-    y =  np.diag(np.abs(np.arange(-m, m + 1)))
+    y = np.diag(np.abs(np.arange(-m, m + 1)))
     x1 = np.diag(np.ones(2 * m), 1)
     x2 = np.diag(np.ones(2 * m), -1)
     return y + x1 + x2

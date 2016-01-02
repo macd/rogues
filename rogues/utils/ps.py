@@ -55,7 +55,7 @@ def ps(a, m=None, tol=1e-3, rl=0, marksize=0):
         plt.plot(e.real, e.imag, 'rx')
         plt.axis(ax)
         plt.axis('equal')
-        plt.show() # dbm
+        plt.show()
         return
 
     # If we don't create x with dtype=np.complex128, then
@@ -102,7 +102,7 @@ def ps(a, m=None, tol=1e-3, rl=0, marksize=0):
         plt.plot(e.real, e.imag, 'rx')
         plt.setp(h, 'markersize', marksize)
         plt.hold(False)
-        plt.show() # dbm
+        plt.show()
 
     else:
         y = x

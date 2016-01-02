@@ -35,8 +35,8 @@ def cpltaxes(zz, plt):
 
     if xmax - xmin >= ymax - ymin:
         ymid = (ymin + ymax) / 2.
-        ymin =  ymid - (xmax - xmin) / 2.
-        ymax =  ymid + (xmax - xmin) / 2.
+        ymin = ymid - (xmax - xmin) / 2.
+        ymax = ymid + (xmax - xmin) / 2.
     else:
         xmid = (xmin + xmax) / 2
         xmin = xmid - (ymax - ymin) / 2.

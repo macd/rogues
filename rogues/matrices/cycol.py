@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def cycol(mn, k=None):
     """
     cycol   matrix whose columns repeat cyclically.
@@ -22,7 +23,8 @@ def cycol(mn, k=None):
         k = max(round(n / 4.), 1)
     else:
         if k > n:
-            raise ValueError("k cannot be greater than the max matrix dimension")
+            raise ValueError("k cannot be greater than the "
+                             "max matrix dimension")
 
     a = np.random.randn(m, k)
 

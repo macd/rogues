@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def gearm(n, i=None, j=None):
     """
     GEARM   Gear matrix.
@@ -20,7 +21,7 @@ def gearm(n, i=None, j=None):
         Math. Comp., 23 (1969), pp. 119-125.
     """
     if i is None:
-        i =  n - 1
+        i = n - 1
         j = -(n - 1)
 
     if not(abs(i) < n and abs(j) < n):

@@ -45,7 +45,7 @@ def ipjfact(n, k=0):
             d = d * np.prod(np.arange(1, i, dtype='float64')) /    \
                 np.prod(np.arange(1, n + 1 + i, dtype='float64'))
 
-        if  (n * (n - 1) / 2) % 2:
+        if (n * (n - 1) / 2) % 2:
             d = -d
     det_a = d
 

@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def fiedler(c):
     """
     FIEDLER  Fiedler matrix - symmetric.

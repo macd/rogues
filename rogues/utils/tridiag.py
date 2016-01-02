@@ -32,7 +32,7 @@ def tridiag(n, x=None, y=None, z=None):
         nx, = n.shape
         ny, = x.shape
         nz, = y.shape
-        if (ny - nx - 1) != 0 or  (ny - nz - 1) != 0:
+        if (ny - nx - 1) != 0 or (ny - nz - 1) != 0:
             raise Higham('Dimensions of vector arguments are incorrect.')
         # Now swap to match above
         z = y
@@ -46,7 +46,7 @@ def tridiag(n, x=None, y=None, z=None):
 
         if x is None and y is None and z is None:
             x = -1
-            y =  2
+            y = 2
             z = -1
 
         x = x * np.ones(n - 1)
@@ -57,7 +57,7 @@ def tridiag(n, x=None, y=None, z=None):
         raise Higham("x, y, z must be all scalars or 1-D vectors")
 
     # t = diag(x, -1) + diag(y) + diag(z, 1);  % For non-sparse matrix.
-    n  = np.max(np.size(y))
+    n = np.max(np.size(y))
     za = np.zeros(1)
 
     # Use the (*)stack functions instead of the r_[] notation in

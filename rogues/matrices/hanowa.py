@@ -25,7 +25,7 @@ def hanowa(n, d=1):
     else:
         m = n / 2
 
-    dg  = np.diag(np.arange(1, m + 1))
+    dg = np.diag(np.arange(1, m + 1))
     # Style / lint checkers will complain about the following two variables
     # not being used because we are passing them into np.bmat as a string.
     mdg = -1 * dg

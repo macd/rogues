@@ -1,6 +1,7 @@
 import numpy as np
 from rogues.utils import tridiag
 
+
 def neumann(n):
     """
     neumann  Singular matrix from the discrete Neumann problem (sparse).
@@ -18,7 +19,7 @@ def neumann(n):
                                  du/dn  =  g   on dR
 
          The matrix t corresponds to a specific ordering on a regular mesh
-         of the finite differences where 
+         of the finite differences where
 
                                 a = t @ I + I @ t
 

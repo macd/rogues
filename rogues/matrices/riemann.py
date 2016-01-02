@@ -21,9 +21,9 @@ def riemann(n):
            F. Roesler, Riemann's hypothesis as an eigenvalue problem,
            Linear Algebra and Appl., 81 (1986), pp. 153-198.
     """
-    n  = n + 1
-    i  = np.outer(np.arange(2, n + 1), np.ones(n - 1))
-    j  = i.T
-    a  = np.where(np.remainder(j, i) == 0, i, -1)
+    n = n + 1
+    i = np.outer(np.arange(2, n + 1), np.ones(n - 1))
+    j = i.T
+    a = np.where(np.remainder(j, i) == 0, i, -1)
 
     return a

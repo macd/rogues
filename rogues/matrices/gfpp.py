@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def gfpp(t, c=1.0):
     """
     GFPP   Matrix giving maximal growth factor for Gaussian elim. with pivoting
@@ -22,7 +23,8 @@ def gfpp(t, c=1.0):
         # t must be an array rather than an int
         n = m + 1
         if np.linalg.norm(t - np.triu(t), 1) | (np.diag(t) == 0.0).any():
-            raise ValueError('First argument must be a nonsingular upper triangular matrix.')
+            raise ValueError('First argument must be a nonsingular upper'
+                             ' triangular matrix.')
     except AttributeError:
         # Handle the special case T = scalar
         n = t
@@ -30,7 +32,7 @@ def gfpp(t, c=1.0):
         t = np.eye(n - 1)
 
     if c < 0. or c > 1.:
-        raise Higham('Second parameter must be a scalar between 0 and ' \
+        raise Higham('Second parameter must be a scalar between 0 and '
                      '1 inclusive.')
 
     d = 1. + c
@@ -44,6 +46,6 @@ def gfpp(t, c=1.0):
     u = np.vstack((uu, ul))
     a = np.matrix(l) * np.matrix(u)
     theta = np.abs(a).max()
-    a[:, n - 1]  = (theta / np.linalg.norm(a[:, n - 1], np.inf)) * a[:, n - 1]
+    a[:, n - 1] = (theta / np.linalg.norm(a[:, n - 1], np.inf)) * a[:, n - 1]
 
     return np.asarray(a)

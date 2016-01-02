@@ -45,7 +45,7 @@ def ohess(x):
         theta = x[i - 1]
         c = np.cos(theta)
         s = np.sin(theta)
-        h[i - 1:i + 1, :] = np.vstack((c * h[i - 1, :] + s * h[i, :], \
-                                   -s * h[i - 1, :] + c * h[i, :]))
+        h[i - 1:i + 1, :] = np.vstack((c * h[i - 1, :] + s * h[i, :],
+                                       -s * h[i - 1, :] + c * h[i, :]))
 
     return h

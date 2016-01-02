@@ -30,7 +30,7 @@ def cond(a, p=2):
     if p == 2:
         u, s, v = np.linalg.svd(a)
         if (s == 0).any():   # Handle singular matrix
-            print ('Condition is infinite')
+            print('Condition is infinite')
             y = np.Inf
         y = max(s) / min(s)
     else:

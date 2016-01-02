@@ -3,9 +3,11 @@ import numpy.linalg as nl
 import pylab as plt
 from rogues.utils import rq, cpltaxes
 
+
 class Higham(Exception):
     pass
-        
+
+
 def fv(b, nk=1, thmax=16, do_plot=True):
     """
     FV     Field of values (or numerical range).
@@ -25,7 +27,8 @@ def fv(b, nk=1, thmax=16, do_plot=True):
        Field of values fv(a) = set of all Rayleigh quotients. fv(a) is a
        convex set containing the eigenvalues of A.  When A is normal fv(a) is
        the convex hull of the eigenvalues of A (but not vice versa).
-               z = x.T * a * x / np.dot(x,x),  z.T = x.T * a.T * x / np.dot(x,x)
+               z = x.T * a * x / np.dot(x,x),
+               z.T = x.T * a.T * x / np.dot(x,x)
                => z.real = x.T * h * x / np.dot(x,x),   h = (a + a.T)/2
        so      min(eig(h)) <= z.real <= max(eig(h)),
        with equality for x = corresponding eigenvectors of h.  For these x,
@@ -45,7 +48,7 @@ def fv(b, nk=1, thmax=16, do_plot=True):
        Note added in porting... changed the last parameter's name.  Now it
        will suppress ploting when set to False.
     """
-    
+
     thmax = thmax - 1     # Because code below uses thmax + 1 angles.
 
     if len(b.shape) != 2:
@@ -54,9 +57,9 @@ def fv(b, nk=1, thmax=16, do_plot=True):
         n, p = b.shape
         if n != p:
             raise Higham('Matrix must be square.')
-    
+
     f = None
-    z = np.zeros(2*thmax + 1, dtype = np.complex128)
+    z = np.zeros(2*thmax + 1, dtype=np.complex128)
     e, v = nl.eig(b)
 
     # Filter out cases where B is Hermitian or skew-Hermitian, for efficiency.
@@ -77,40 +80,40 @@ def fv(b, nk=1, thmax=16, do_plot=True):
             for i in range(thmax):
                 th = i / float(thmax) * np.pi
                 # Rotate A through angle th.
-                ath = np.exp(1j * th) * a              
+                ath = np.exp(1j * th) * a
                 # Hermitian part of rotated A.
-                h = 0.5 * (ath + ath.T)                
+                h = 0.5 * (ath + ath.T)
                 d, x = nl.eig(h)
                 k = np.argsort(d.real)
                 # rq's of a corr. to eigenvalues of h
-                z[i] = rq(a, x[:, k[0]] )
+                z[i] = rq(a, x[:, k[0]])
                 # with smallest/largest real part.
-                z[i + thmax] = rq(a, x[:, k[ns-1]] )   
+                z[i + thmax] = rq(a, x[:, k[ns-1]])
 
-            if f == None:
+            if f is None:
                 f = z
             else:
                 f = np.vstack((f, z))
 
-        # Next line ensures boundary is `joined up' (needed for orthogonal 
+        # Next line ensures boundary is `joined up' (needed for orthogonal
         # matrices).
         if len(f.shape) > 1:
-            f = np.vstack((f, f[0,:]))
+            f = np.vstack((f, f[0, :]))
         else:
-            f = np.vstack((f,f))
-            
+            f = np.vstack((f, f))
+
     if thmax == 0:
         f = e
 
     if do_plot:
         ax = cpltaxes(f, plt)
         # Plot the field of values
-        plt.plot(f.real, f.imag, 'o')         
+        plt.plot(f.real, f.imag, 'o')
         plt.axis(ax)
         plt.axis('equal')
         plt.hold(True)
         # Plot the eigenvalues too.
-        plt.plot(e.real, e.imag, 'x')    
+        plt.plot(e.real, e.imag, 'x')
         plt.hold(False)
 
     plt.show()

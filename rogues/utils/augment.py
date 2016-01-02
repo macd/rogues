@@ -29,7 +29,7 @@ def augment(a, alpha=1.):
     """
 
     try:
-        m, n  = a.shape
+        m, n = a.shape
     except AttributeError:
         # Handle the special case a = scalar
         n = a
@@ -39,7 +39,7 @@ def augment(a, alpha=1.):
         m = p
         n = q
 
-    c = np.vstack((np.hstack((alpha * np.eye(m), a)),  \
+    c = np.vstack((np.hstack((alpha * np.eye(m), a)),
                    np.hstack((a.T, np.zeros((n, n))))))
 
     return c

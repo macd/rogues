@@ -65,7 +65,7 @@ def mdsmax(fun, x, stopit=None, savit=None, varargin=[]):
         stopit = (1e-5, np.inf, np.inf, 0, 1)
 
     x0 = x
-    n  = x0.size
+    n = x0.size
 
     varargin = []
 
@@ -80,9 +80,9 @@ def mdsmax(fun, x, stopit=None, savit=None, varargin=[]):
     if savit is not None:
         status_file = open(savit, 'w')
 
-    v  = np.hstack((np.zeros((n, 1)), np.eye(n)))
-    t  = v
-    f  = np.zeros(n + 1)
+    v = np.hstack((np.zeros((n, 1)), np.eye(n)))
+    t = v
+    f = np.zeros(n + 1)
     ft = f
     v[:, 0] = x0
     f[0] = fun(x, varargin)
@@ -95,10 +95,10 @@ def mdsmax(fun, x, stopit=None, savit=None, varargin=[]):
     if stopit[3] == 0:
         # Regular simplex - all edges have same length
         # Generated from construction given in reference [18, pp. 80-81] of [1]
-        alpha = scale / (n * np.sqrt(2)) * np.hstack((np.sqrt(n + 1) - 1 + n, 
+        alpha = scale / (n * np.sqrt(2)) * np.hstack((np.sqrt(n + 1) - 1 + n,
                                                      np.sqrt(n + 1) - 1))
         v[:, 1:n + 1] = np.outer(x0 + alpha[1] * np.ones(n), np.ones(n))
-        for j  in range(1, n + 1):
+        for j in range(1, n + 1):
             v[j - 1, j] = x0[j - 1] + alpha[0]
             x = v[:, j]
             f[j] = fun(x, varargin)
@@ -133,10 +133,11 @@ def mdsmax(fun, x, stopit=None, savit=None, varargin=[]):
 
         f[0], f[j] = f[j], f[0]
 
-        print_status('Iter. %2.0f,  inner = %2.0f,  size = %2.0f,  ' % \
-                      (k, m, size))
-        print_status('nf = %3.0f,  f = %9.4e  (%2.1f)\n' % (nf, fmax,   \
-                      100 * (fmax - fmax_old) / \
+        print_status('Iter. %2.0f,  inner = %2.0f,  size = %2.0f,  ' %
+                     (k, m, size))
+
+        print_status('nf = %3.0f,  f = %9.4e  (%2.1f)\n' %
+                     (nf, fmax, 100 * (fmax - fmax_old) /
                       (abs(fmax_old) + np.finfo(float).eps)))
 
         fmax_old = fmax
@@ -159,9 +160,9 @@ def mdsmax(fun, x, stopit=None, savit=None, varargin=[]):
 
             # Stopping Test 3 - converged?   This is test (4.3) in [1].
             vt = np.outer(v0, np.ones(n))
-            #size_simplex = nl.norm(v[:,1:n+1] - v0[:,np.ones(n)], 1) /  \
-            size_simplex = nl.norm(v[:, 1:n + 1] - vt, 1) /  \
-                           max(1, nl.norm(v0, 1))
+            # size_simplex = nl.norm(v[:,1:n+1] - v0[:,np.ones(n)], 1) /  \
+            size_simplex = (nl.norm(v[:, 1:n + 1] - vt, 1) /
+                            max(1, nl.norm(v0, 1)))
             if size_simplex <= tol:
                 msg = 'Simplex size %9.4e <= %9.4e...quitting\n' % \
                                (size_simplex, tol)

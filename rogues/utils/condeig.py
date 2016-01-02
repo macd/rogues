@@ -36,7 +36,7 @@ def condeig(a):
     else:
         m, n = a.shape
         if m != n or m < 2:
-            raise Higham("a must be a square array with dimension of " \
+            raise Higham("a must be a square array with dimension of "
                          "2 or greater")
 
     # eigenvalues, left and right eigenvectors

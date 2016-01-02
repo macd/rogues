@@ -41,8 +41,8 @@ def ge(b):
         a[k + 1:n, k] = a[k + 1:n, k] / a[k, k]          # Multipliers.
 
         # Elimination
-        a[k + 1:n, k + 1:n] = a[k + 1:n, k + 1:n] - \
-                              np.outer(a[k + 1:n, k], a[k, k + 1:n])
+        a[k + 1:n, k + 1:n] = (a[k + 1:n, k + 1:n] -
+                               np.outer(a[k + 1:n, k], a[k, k + 1:n]))
         rho = max(rho, (abs(a[k + 1:n, k + 1:n])).max())
 
     l = np.tril(a, -1) + np.eye(n)

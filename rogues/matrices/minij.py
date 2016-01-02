@@ -20,7 +20,7 @@ def minij(n):
            chemistry---II, Proc. Royal Soc. Edin., 63, A (1952), pp. 232-241.
            (For the eigenvalues of Givens' matrix.)
     """
-    o  = np.outer(np.ones(n), np.arange(1, n + 1))
+    o = np.outer(np.ones(n), np.arange(1, n + 1))
     ot = o.T
-    a  = np.where(o < ot, o, ot)
+    a = np.where(o < ot, o, ot)
     return a

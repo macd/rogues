@@ -20,8 +20,8 @@ def smoke(n, k=0):
           Toeplitz matrices, Linear Algebra and Appl., 162-164:153-185, 1992.
     """
     w = np.exp(2 * np.pi * 1j / n)
-    a = (np.diag(np.hstack((w ** np.arange(1, n), 1))) + 
-                np.diag(np.ones(n - 1), 1))
+    a = (np.diag(np.hstack((w ** np.arange(1, n), 1))) +
+         np.diag(np.ones(n - 1), 1))
     if k == 0:
         a[n - 1, 0] = 1
 

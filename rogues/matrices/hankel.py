@@ -1,6 +1,7 @@
 import numpy as np
 import warnings
 
+
 def hankel(a, b=None):
     """
     hankel(a) returns a toeplitz matrix given "a", the first row of the

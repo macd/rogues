@@ -19,9 +19,8 @@ def prolate(n, w=0.25):
     """
     a = np.zeros(n)
     a[0] = 2 * w
-    a[1:n] = np.sin(2 * np.pi * w * np.arange(1, n)) / \
-             (np.pi * np.arange(1, n))
-
+    a[1:n] = np.sin(2 * np.pi * w * np.arange(1, n)) / (np.pi *
+                                                        np.arange(1, n))
     t = toeplitz(a)
 
     return t

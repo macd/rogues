@@ -29,7 +29,7 @@ def bandred(x, kl=0, ku=-1):
     a = x.copy()
 
     if kl == 0 and (ku == 0 or ku == -1):
-        raise Higham("You've asked for a diagonal matrix. " \
+        raise Higham("You've asked for a diagonal matrix. "
                      "In that case use the SVD!")
     elif ku == -1:
         # set ku to k1 if it has not yet been set
@@ -39,7 +39,7 @@ def bandred(x, kl=0, ku=-1):
     # Easiest approach is to work on the transpose, flipping back at the end.
     flip = 0
     if ku == 0:
-        a    = a.T
+        a = a.T
         kl, ku = ku, kl
         flip = 1
 

@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def compan(p):
     """
     COMPAN  Companion matrix.
@@ -33,8 +34,9 @@ def compan(p):
             # it would seem to be on a false path in the control logic,
             # ie compan shouldn't be defined for a non square matrix
             # so here we error out when that happens.
-            #n = max(n,m)
-            raise ValueError("Input matrix 'a' must be square with dimension > 1")
+            # n = max(n,m)
+            raise ValueError("Input matrix 'a' must be square "
+                             "with dimension > 1")
 
     except ValueError:
         n, = p.shape
