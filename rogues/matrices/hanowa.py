@@ -23,7 +23,7 @@ def hanowa(n, d=1):
     if n % 2:
         raise Higham('n must be even.')
     else:
-        m = n / 2
+        m = n // 2
 
     dg = np.diag(np.arange(1, m + 1))
     # Style / lint checkers will complain about the following two variables

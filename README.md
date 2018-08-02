@@ -1,4 +1,4 @@
-# rogues 0.4.0
+# rogues 0.5.0
 
 ## Python and Numpy port of Prof. Nicholas Higham's matlab test matrices
 
@@ -7,12 +7,10 @@ matlab's 'gallery' collection. This collection was originally defined
 and implemented by Prof. Nicholas Higham of Manchester University and
 is more fully discussed in "The Test Matrix Toolbox for Matlab
 (Version 3.0)", N.J. Higham, Numerical Analysis Report No. 276,
-September 1995 which appears to be no longer available from the
-University of Manchester web site. A summary of the earlier TOMS paper
-discussing this library can be found (as of January 2016) on Semantic
-Scholar at [here](https://www.semanticscholar.org/paper/a47a4ab58280f2795ba5c49f3f0bf285e75985d3)
+September 1995 and available [here](http://www.ma.man.ac.uk/~higham/mctoolbox/toolbox.pdf)
 
-and a pdf of the TOMS paper is [here](https://s3-us-west-2.amazonaws.com/ai2-s2-pdfs/a47a/4ab58280f2795ba5c49f3f0bf285e75985d3.pdf)
+The pdf of the 1991 TOMS (Algorithm 694) paper no longer appears to be available for
+free. The link to the ACM is [here](https://dl.acm.org/citation.cfm?id=116805)
 
 By 'interesting' we mean that these matrices either present some
 challenges to numerical algorithms or have some a set of interesting
@@ -125,6 +123,12 @@ Some of generally useful matrix utility functions:
 
 More information is available on any of these functions by typing **help <funcname>**
 
+### 0.5.0 Release Notes
+    Don't use the distribute_setuptools.py stuff for python 2.7.15
+    Fixed type errors in cycol.py, dorr.py, hanowa.py, ohess.py, and treshape.py that have
+    developed with newer versions of Python.
+    Tested on Ubuntu 18.04.1 with Python 2.7.15 & Numpy 1.14.3; Python 3.6.5 & Numpy 1.14.3;
+        and Python 3.7.0 and Numpy 1.15.0
 ### 0.4.0 Release Notes
     Added visualization routines fv, gersh, and pscont. Fixed issues with np.r_.
     Relaxed tolerances for two problematic unit tests. Only use distribute with

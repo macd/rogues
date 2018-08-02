@@ -126,10 +126,10 @@ Some of generally useful matrix utility functions:
    More information is available on any of these functions by typing
    "help <funcname>"
    
-Don MacMillen 1 Jan 2016
+Don MacMillen 1 August 2018
 """
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"
    
 from rogues.matrices import *
 from rogues.utils import *

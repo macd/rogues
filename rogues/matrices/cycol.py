@@ -20,7 +20,7 @@ def cycol(mn, k=None):
         n = mn
 
     if k is None:
-        k = max(round(n / 4.), 1)
+        k = max(n // 4, 1)
     else:
         if k > n:
             raise ValueError("k cannot be greater than the "

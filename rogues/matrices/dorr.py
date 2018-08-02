@@ -30,7 +30,7 @@ def dorr(n, theta=0.01, r_matrix=False, set_sparse=False):
     # All length n for convenience.  Make c, e of length n-1 later.
 
     h = 1. / (n + 1)
-    m = np.floor((n + 1) / 2.)
+    m = (n + 1) // 2
     term = theta / h ** 2
 
     i = slice(0, m)

@@ -28,7 +28,7 @@ def treshape(x, unit=0, row_wise=False):
     if unit < 2:   # Convert vector x to upper triangular R.
         m = p * q
         n = int(np.around((-1 + np.sqrt(1 + 8 * m)) / 2.))
-        if n * (n + 1) / 2 != m:
+        if n * (n + 1) // 2 != m:
             raise Higham('Matrix must have a "triangular" '
                          'number of elements.')
 
@@ -55,7 +55,7 @@ def treshape(x, unit=0, row_wise=False):
             raise Higham('Must pass square matrix')
 
         unit = unit - 2
-        n = p * (p + 1) / 2 - unit * p
+        n = p * (p + 1) // 2 - unit * p
         x = np.zeros(n)
         i = 0
         if row_wise:

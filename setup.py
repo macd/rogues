@@ -1,12 +1,12 @@
 import sys
-if sys.version_info.major < 3:
+if sys.version_info.major < 3 && sys.version_info.micro < 15:
     from distribute_setup import use_setuptools
     use_setuptools()
 
 from setuptools import setup, find_packages
 
 setup(name             = 'rogues',
-      version          = '0.4.0',
+      version          = '0.5.0',
       test_suite       = 'nose.collector',
       packages         = find_packages(),
       install_requires = ['numpy', 'scipy'],

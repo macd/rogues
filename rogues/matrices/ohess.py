@@ -26,20 +26,23 @@ def ohess(x):
        W.B. Gragg, The QR algorithm for unitary Hessenberg matrices,
        J. Comp. Appl. Math., 16 (1986), pp. 1-8.
     """
-    if np.imag(x).any():
-        raise Higham('Parameter must be real.')
 
-    try:
-        n = np.max(x.shape)
-        h = np.eye(n)
-        # Second term ensures h[n-1, n-1] nonzero.
-        h[n - 1, n - 1] = np.sign(x[n - 1]) + float(x[n - 1] == 0)
-    except AttributeError:
+    if type(x) == int:
         n = x
         x = np.random.uniform(size=n - 1) * 2 * np.pi
         h = np.eye(n)
         h[n - 1, n - 1] = np.sign(np.random.randn())
-
+    elif type(x) == numpy.ndarray:
+        if np.imag(x).any():
+            raise Higham('Parameter must be real.')
+        n = np.max(x.shape)
+        h = np.eye(n)
+        # Second term ensures h[n-1, n-1] nonzero.
+        h[n - 1, n - 1] = np.sign(x[n - 1]) + float(x[n - 1] == 0)
+    else:
+        raise Higham('Unknown type in ohess')        
+        
+        
     for i in range(n - 1, 0, -1):
         # Apply Givens rotation through angle x[i - 1]
         theta = x[i - 1]
