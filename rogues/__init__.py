@@ -128,6 +128,7 @@ Some of generally useful matrix utility functions:
    
 Don MacMillen 1 August 2018
 """
+name = "rogues"
 
 __version__ = "0.5.0"
    
