@@ -38,12 +38,10 @@ def gersh(A, plot=True):
         ax = cpltaxes(G[:], plt)
         for j in range(n):
             plt.plot(G[:, j].real, G[:, j].imag, '-')      # Plot the disks.
-            plt.hold(True)
 
         plt.plot(e.real, e.imag, 'x')    # Plot the eigenvalues too.
         plt.axis(ax)
         plt.axis('equal')
-        plt.hold(False)
         plt.show()
 
     return G, e
