@@ -111,10 +111,8 @@ def fv(b, nk=1, thmax=16, do_plot=True):
         plt.plot(f.real, f.imag, 'o')
         plt.axis(ax)
         plt.axis('equal')
-        plt.hold(True)
         # Plot the eigenvalues too.
         plt.plot(e.real, e.imag, 'x')
-        plt.hold(False)
 
     plt.show()
     return f, e

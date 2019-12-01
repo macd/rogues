@@ -99,22 +99,17 @@ def pscont(a, k=0, npts=None, ax=None, levels=None):
 
     if k == 0 or k == 1:
         plt.pcolor(x, y, z)
-        plt.hold(True)
     elif k == 2 or k == 3:
         fig = plt.figure()
-        plt.hold(True)
         ax = fig.gca(projection='3d')
         surf = ax.plot_surface(x, y, z, rstride=1, cstride=1,
                                cmap=cm.coolwarm, linewidth=.2,
                                antialiased=True)
-        plt.hold(True)
 
     if k == 0:
         plt.contour(x, y, z, levels)
-        plt.hold(True)
     elif k == 4:
         plt.contour(x, y, z, levels)
-        plt.hold(True)
 
     if k != 2 and k != 3:
         if k == 0 or k == 1:
@@ -124,6 +119,5 @@ def pscont(a, k=0, npts=None, ax=None, levels=None):
         plt.plot(e.real, e.imag, ''.join((s, 'x')))
 
     plt.axis('equal')
-    plt.hold(False)
     plt.show()
     return x, y, z

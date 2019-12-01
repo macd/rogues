@@ -97,11 +97,9 @@ def ps(a, m=None, tol=1e-3, rl=0, marksize=0):
             # the pseudo eigenvalues so we punt an put in a default
             marksize = 5
 
-        plt.hold(True)
         e, v = np.linalg.eig(a)
         plt.plot(e.real, e.imag, 'rx')
         plt.setp(h, 'markersize', marksize)
-        plt.hold(False)
         plt.show()
 
     else:
