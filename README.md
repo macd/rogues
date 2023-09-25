@@ -7,10 +7,9 @@ matlab's 'gallery' collection. This collection was originally defined
 and implemented by Prof. Nicholas Higham of Manchester University and
 is more fully discussed in "The Test Matrix Toolbox for Matlab
 (Version 3.0)", N.J. Higham, Numerical Analysis Report No. 276,
-September 1995 and available [here](http://www.ma.man.ac.uk/~higham/mctoolbox/toolbox.pdf)
+September 1995 and available [here](http://www.ma.man.ac.uk/~higham/mctoolbox/toolbox.pdf) (Now appears to be a dead link)
 
-The pdf of the 1991 TOMS (Algorithm 694) paper no longer appears to be available for
-free. The link to the ACM is [here](https://dl.acm.org/citation.cfm?id=116805)
+The pdf of the 1991 TOMS (Algorithm 694) is available from ACM [here](https://dl.acm.org/citation.cfm?id=116805)
 
 By 'interesting' we mean that these matrices either present some
 challenges to numerical algorithms or have some a set of interesting
