@@ -54,7 +54,8 @@ def wathen(nx, ny, k=0):
             nn[5] = nn[4] + 1
             nn[6] = nn[5] + 1
             nn[7] = nn[3] + 1
-
+            nn = nn.astype(int)
+            
             em = e * rho[i, j]
 
             for krow in range(8):
