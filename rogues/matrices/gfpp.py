@@ -38,13 +38,11 @@ def gfpp(t, c=1.0):
     d = 1. + c
     l = np.eye(n) - c * np.tril(np.ones((n, n)), -1)
 
-    # OK, so this syntax is not as pretty as m*lab...
-    #
     uu = np.hstack((t, (d ** np.arange(0, n - 1)).reshape(n - 1, 1)))
     ul = np.zeros((1, m + 1))
     ul[0, m] = d ** (n - 1)
     u = np.vstack((uu, ul))
-    a = np.matrix(l) * np.matrix(u)
+    a = l @ u
     theta = np.abs(a).max()
     a[:, n - 1] = (theta / np.linalg.norm(a[:, n - 1], np.inf)) * a[:, n - 1]
 

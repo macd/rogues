@@ -103,7 +103,7 @@ def randsvd(n, kappa=None, mode=3, kl=None, ku=None):
 
     if is_posdef:               # Handle special case.
         q = qmult(p)
-        a = np.matrix(q.T) * np.matrix(sigma) * np.matrix(q)
+        a = q.T @ sigma @ q
         a = (a + a.T) / 2.      # Ensure matrix is symmetric.
         return a
 

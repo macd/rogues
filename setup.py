@@ -9,7 +9,7 @@ with open("README.md", "r") as fh:
 from setuptools import setup, find_packages
 
 setup(name             = 'rogues',
-      version          = '0.5.0',
+      version          = '1.0.0',
       test_suite       = 'nose.collector',
       packages         = find_packages(),
       install_requires = ['numpy', 'scipy'],
@@ -23,7 +23,7 @@ setup(name             = 'rogues',
       keywords         = 'numpy scipy matplotlib linalg',
       zip_safe         = True,
       classifiers=[
-                     'Development Status :: 3 - Alpha',
+                     'Development Status :: 4 - Beta',
                      'Intended Audience :: Developers',
                      'Intended Audience :: Science/Research',
                      'License :: OSI Approved :: MIT License',

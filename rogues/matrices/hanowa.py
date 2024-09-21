@@ -30,6 +30,7 @@ def hanowa(n, d=1):
     # not being used because we are passing them into np.bmat as a string.
     mdg = -1 * dg
     de = d * np.eye(m)
+    # Using this string form raises a deprecation error in numpy 2.1.0 and python 3.12.5
     a = np.bmat('de,  mdg; dg, de')
 
     return a

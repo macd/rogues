@@ -17,5 +17,5 @@ def moler(n, alpha=-1):
         Algebra and Function Minimisation, second edition, Adam Hilger,
         Bristol, 1990 (Appendix 1).
     """
-    a = np.matrix(triw(n, alpha).T) * np.matrix(triw(n, alpha))
-    return np.asarray(a)
+    a = triw(n, alpha).T  @  triw(n, alpha)
+    return a

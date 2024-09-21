@@ -40,7 +40,7 @@ def test_cgs():
     # r must be upper triangular
     npt.assert_almost_equal(r, np.triu(r), 10)
     # factorization must hold
-    npt.assert_almost_equal(a, np.matrix(q) * np.matrix(r), 10)
+    npt.assert_almost_equal(a, q @ r, 10)
 
 
 def test_cond():
@@ -70,7 +70,7 @@ def test_condeig():
 #     """Simple exercise of diagpiv"""
 #     l,d,p,rho = rogues.diagpiv(5)
 #     l,u,r = ge(a)
-#     b = np.matrix(l)*np.matrix(u)
+#     b = l @ u
 #     npt.assert_array_almost_equal(a, b, 12)
 
 
@@ -87,7 +87,7 @@ def test_ge():
     """Simple exercise of the ge (Gaussian elimination)"""
     a = rogues.gfpp(5)
     l, u, r = rogues.ge(a)
-    b = np.matrix(l) * np.matrix(u)
+    b = l @ u
     npt.assert_array_almost_equal(a, b, 12)
 
 # tested in rogues/matrices/tests
@@ -141,7 +141,7 @@ def test_mgs():
     """Simple test modified gram schmidt orthogonalization"""
     a = np.random.randn(10, 10)
     q, r = rogues.mgs(a)
-    b = np.matrix(q) * np.matrix(q.T)
+    b = q @ q.T
     npt.assert_array_almost_equal(b, np.eye(10), 12)
 
 

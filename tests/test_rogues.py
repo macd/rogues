@@ -1,4 +1,4 @@
-from scipy.sparse.linalg.isolve import bicg
+from scipy.sparse.linalg import bicg
 import numpy as np
 import numpy.linalg as nl
 import numpy.testing as npt
@@ -234,8 +234,7 @@ def test_hadamard():
     """Simple test of hadamard(16)"""
     n = 16
     a = rogues.hadamard(n)
-    a = np.matrix(a)
-    dm = a.T * a
+    dm = a.T @ a
     npt.assert_array_equal(np.diag(dm), n * np.ones(n))
 
 
@@ -292,8 +291,7 @@ def test_invol():
     """Simple test of invol.  Must be it's own inverse."""
     n = 5
     a = rogues.invol(n)
-    a = np.matrix(a)
-    b = a * a
+    b = a @ a
     bd = np.diag(np.ones(n))
     print ("invol**2 = ", b)
     npt.assert_array_almost_equal(b, bd)
@@ -357,7 +355,7 @@ def test_kms():
     l = nl.inv(rogues.triw(n, -rho, 1).T)
     d = (1 - np.abs(rho) ** 2) * np.eye(n)
     d[0, 0] = 1
-    k = np.matrix(l) * np.matrix(d) * np.matrix(l.T)
+    k = l @ d @ l.T
     npt.assert_array_equal(a, k)
 
     # verify that nl.inv(a) is tridiagonal.
@@ -448,7 +446,7 @@ def test_ohess():
     n = 10
     a = rogues.ohess(n)
     # Test to see if a is orthogonal...
-    b = np.matrix(a) * np.matrix(a.T)
+    b = a @ a.T
     assert(np.allclose(b, np.eye(n)))
 
 # def test_othog():
@@ -457,7 +455,7 @@ def test_ohess():
 #     n = 10
 #     a = rogues.orthog(n)
 #     # Test to see if a is orthogonal...
-#     b = np.matrix(a) * np.matrix(a.T)
+#     b = a @ a.T
 #     assert( np.allclose(b, np.eye(n)) )
 
 
@@ -484,7 +482,7 @@ def test_pascal_1():
     # Notice we recover the unit matrix with n = 18, better than previous test
     n = 18
     a = rogues.pascal(n, 1)
-    b = np.matrix(a) * np.matrix(a)
+    b = a @ a
     assert(np.allclose(b, np.eye(n)))
 
 

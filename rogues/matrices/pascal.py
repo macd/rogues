@@ -53,7 +53,7 @@ def pascal(n, k=0):
             p[i, j] = p[i - 1, j] - p[i - 1, j - 1]
 
     if k == 0:
-        p = np.matrix(p) * np.matrix(p.T)
+        p = p @ p.T
 
     elif k == 2:
         p = np.rot90(p, 3)
