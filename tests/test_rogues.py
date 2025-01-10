@@ -299,7 +299,7 @@ def test_invol():
 
 def test_ipjfact():
     """Simple test of ipjfact. Use simple minded version"""
-    fa = np.arange(200.)
+    fa = np.arange(100.)
     fa[0] = 1.
     fac = np.cumprod(fa)
     n = 6
