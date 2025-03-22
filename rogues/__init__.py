@@ -130,7 +130,7 @@ Don MacMillen 1 August 2018
 """
 name = "rogues"
 
-__version__ = "0.5.0"
+__version__ = "1.0.1"
    
 from rogues.matrices import *
 from rogues.utils import *

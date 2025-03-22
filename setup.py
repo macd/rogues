@@ -9,7 +9,7 @@ with open("README.md", "r") as fh:
 from setuptools import setup, find_packages
 
 setup(name             = 'rogues',
-      version          = '1.0.0',
+      version          = '1.0.1',
       test_suite       = 'nose.collector',
       packages         = find_packages(),
       install_requires = ['numpy', 'scipy'],

@@ -1,4 +1,4 @@
-# rogues 1.0.0
+# rogues 1.0.1
 
 ## Python and Numpy port of Prof. Nicholas Higham's matlab test matrices
 
@@ -123,6 +123,14 @@ Some of generally useful matrix utility functions:
 
 More information is available on any of these functions by typing **help <funcname>**
 
+### 1.0.1 Release Notes
+    Fixed incorrect __version__ string
+
+### 1.0.0 Release Notes
+    Simplified tests and moved to pytest
+    Removed deprecation warnings
+    Tested on Ubuntu 24.04, Python 3.8.19 with Numpy 1.24.4, and Python 3.12.5 with Numpy 2.1.0
+
 ### 0.5.0 Release Notes
     Don't use the distribute_setuptools.py stuff for python 2.7.15
     Fixed type errors in cycol.py, dorr.py, hanowa.py, ohess.py, and treshape.py that have
@@ -137,11 +145,6 @@ More information is available on any of these functions by typing **help <funcna
     Tested on Ubuntu 14.04 with Python 3.4.3,  Numpy 1.9.3,  Scipy 0.16.0, IPython 4.0.0, Matplotlib 1.4.3
     Tested on Ubuntu 14.04 with Python 2.7.10, Numpy 1.9.2,  Scipy 0.15.1, IPython 3.2.1, Matplotlib 1.3.1
     Tested on Windows 10   with Python 3.5.1,  Numpy 1.10.1, Scipy 0.16.0, IPython 4.0.0, Matplotlib 1.4.3
-
-### 1.0.0 Release Notes
-    Simplified tests and moved to pytest
-    Removed deprecation warnings
-    Tested on Ubuntu 24.04, Python 3.8.19 with Numpy 1.24.4, and Python 3.12.5 with Numpy 2.1.0
 
 ### 0.3.0 Release Notes
     Ported to Python 3. Added distribute_setup.py to fix installation problems.
